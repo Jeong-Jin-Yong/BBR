@@ -26,11 +26,11 @@ public class ObjectPool : MonoBehaviour
         obj.SetActive(true);
 
         // PlatformMover가 있다면 ObjectPool을 넘겨줌
-        PlatformMover mover = obj.GetComponent<PlatformMover>();
-        if (mover != null)
-        {
-            mover.Init(this);
-        }
+        //PlatformMover mover = obj.GetComponent<PlatformMover>();
+        //if (mover != null)
+        //{
+        //    mover.Init(this);
+        //}
 
         return obj;
     }

@@ -159,10 +159,5 @@ public class PlatformGenerator : MonoBehaviour
         {
             platformInfos.Add(new PlatformInfo(firstBlock, lastBlock, blockCount));
         }
-
-        //// curPos 업데이트 (높이 정보 유지용)
-        //curPos.y = platformY;
-
-        Debug.Log($"Platform generated at X: {newPlatformStartX} ~ {newPlatformStartX + blockCount}, Player X: {player.position.x}");
     }
 }

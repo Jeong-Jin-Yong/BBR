@@ -2,24 +2,75 @@ using UnityEngine;
 
 public class PlatformMover : MonoBehaviour
 {
-    [SerializeField] private float disableX = -10f;
+    private float disableX = -25f;
 
-    private float moveSpeed = 5.0f; // °ÔÀÓÀÌ ÁøÇàµÉ ¼ö·Ï Á¡Á¡ »¡¶óÁöµµ·Ï ¼³Á¤
-
-    private ObjectPool objectPool;
-
-    public void Init(ObjectPool pool)
-    {
-        objectPool = pool;
-    }
+    private float moveSpeed = 4.0f; // í”Œë«í¼ ì´ë™ ì†ë„
+    private bool isMoving = true;
 
     private void Update()
     {
-        transform.Translate(Vector3.left * moveSpeed * Time.deltaTime);
-        
-        if (transform.position.x < disableX && objectPool != null)
-        {
-            objectPool.ReturnObject(gameObject);
+        if (isMoving) 
+        { 
+            MoveSegment();
+            CheckDestruction();
         }
+    }
+
+    private void MoveSegment()
+    {
+        transform.Translate(Vector3.left * moveSpeed * Time.deltaTime);
+    }
+
+    private void CheckDestruction()
+    {
+        if (transform.position.x <= disableX)
+        {
+            ReturnToPool();
+        }
+    }
+
+    private void ReturnToPool()
+    {
+        // SegmentGeneratorì˜ activeSegments íì—ì„œ ì œê±°
+        if (SegmentGenerator.Instance != null)
+        {
+            SegmentGenerator.Instance.RemoveSegmentFromQueue(gameObject);
+        }
+
+        if (SegmentPool.Instance != null)
+        {
+            SegmentPool.Instance.ReturnSegment(gameObject);
+        }
+        else
+        {
+            gameObject.SetActive(false);
+        }
+    }
+
+    public void StartMoving()
+    {
+        isMoving = true;
+    }
+
+    public void StopMoving()
+    {
+        isMoving = false;
+    }
+
+    public void SetMoveSpeed(float speed)
+    {
+        moveSpeed = speed;
+    }
+
+    public void ResetPosition(Vector3 position)
+    {
+        transform.position = position;
+        StartMoving();
+    }
+
+    private void OnEnable()
+    {
+        // ì„¸ê·¸ë¨¼íŠ¸ê°€ í™œì„±í™”ë  ë•Œ ì´ë™ ì‹œì‘
+        StartMoving();
     }
 }
