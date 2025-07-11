@@ -59,14 +59,14 @@ public class GameManager : MonoBehaviour
 
 
         //장애물 데미지 테스트용
-        if (Input.GetKeyDown(KeyCode.Mouse0))
+        if (Input.GetKeyDown(KeyCode.W))
         {
             //장애물 피격 시 -10
             PlayerHpDecrease(10, "Obstacle");
         }
 
         //불 데미지 테스트용
-        if (Input.GetKeyDown(KeyCode.Mouse1))
+        if (Input.GetKeyDown(KeyCode.Q))
         {
             //불 데미지 실행
             PlayerHpDecrease(0, "Fire");
@@ -167,9 +167,7 @@ public class GameManager : MonoBehaviour
         //지속시간 종료
         if(fireDamageDuration <= 0)
         {
-            onFire = false;
-            fireDamage = 0;
-            fireDamageDuration = 0;
+            InitOnFire();
         }
     }
 
@@ -206,5 +204,17 @@ public class GameManager : MonoBehaviour
     {
         isGameOver = true;
         gameEndingScript.EndGame();
+    }
+
+    public bool GetOnFire()
+    {
+        return onFire;
+    }
+
+    public void InitOnFire()
+    {
+        onFire = false;
+        fireDamage = 0;
+        fireDamageDuration = 0;
     }
 }

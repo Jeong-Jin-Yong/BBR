@@ -1,3 +1,5 @@
+﻿using System.Collections;
+using Unity.Properties;
 using UnityEngine;
 
 public class CharacterInput : MonoBehaviour
@@ -5,15 +7,26 @@ public class CharacterInput : MonoBehaviour
     public GameManager gm;
 
     [SerializeField]
-    private float jumpPower = 250f;
+    private float doughSkillDistance = 250f;
+    [SerializeField]
+    private float breadSkillDistance = 500f;
 
+    [Header("Jump")]
+    [SerializeField]
+    private float jumpPower = 250f;
     [SerializeField]
     private int jumpMaxCount = 2;
     private int jumpCount;
 
+    [Header("Skill Object")]
+    [SerializeField]
+    public GameObject skillObject;
+
     private Vector2 originScale;
 
     private Rigidbody2D rb;
+
+    #region Unity Life Style
 
     private void OnEnable()
     {
@@ -26,11 +39,37 @@ public class CharacterInput : MonoBehaviour
         //CharacterInfo.Instance.ActivePlayer();
     }
 
+    #endregion
+
     private void Update()
     {
         if (Input.GetKeyDown(KeyCode.Space))
         {
-            UseSkill();
+            switch ((int)CharacterInfo.Instance.GetPlayer())
+            {
+                case -1:
+                    return;
+                case 0:
+                    if (skillObject != null && !skillObject.activeSelf)
+                    {
+                        ActiveDoughSkill();
+                    }
+                    break;
+                case 1:
+                    if (gm.GetOnFire())
+                    {
+                        gm.InitOnFire();
+                    }
+                    break;
+                case 2:
+                    if (skillObject != null && !skillObject.activeSelf)
+                    {
+                        ActiveBreadSkill();
+                    }
+                    break;
+                default:
+                    break;
+            }
         }
 
         if (Input.GetMouseButtonDown(0))
@@ -60,25 +99,51 @@ public class CharacterInput : MonoBehaviour
         }
     }
 
-    void UseSkill()
+    void ActiveDoughSkill()
     {
-        switch ((int)CharacterInfo.Instance.GetPlayer())
+        Vector2 originPos = skillObject.transform.position;
+        skillObject.SetActive(true);
+
+        var dir = (this.transform.right + this.transform.up) * doughSkillDistance;
+        skillObject.GetComponent<Rigidbody2D>().AddForce((Vector2)dir);
+        StartCoroutine(ActiveSkillEnd(1, 1.1f, originPos));
+    }
+
+    void ActiveBreadSkill()
+    {
+        Vector2 originPos = skillObject.transform.position;
+        skillObject.SetActive(true);
+
+        var dir = this.transform.right * breadSkillDistance;
+        skillObject.GetComponent<Rigidbody2D>().AddForce((Vector2)dir);
+        StartCoroutine(ActiveSkillEnd(3, 2f, originPos));
+    }
+
+    IEnumerator ActiveSkillEnd(int id,float waiting, Vector2 originPos)
+    {
+        yield return new WaitForSeconds(waiting);
+
+        if (id == 1)
         {
-            case -1:
-                return;
-            case 0:
-                Debug.Log($"{CharacterInfo.Instance.GetPlayer()}: Use Skill");
-                break;
-            case 1:
-                Debug.Log($"{CharacterInfo.Instance.GetPlayer()}: Use Skill");
-                break;
-            case 2:
-                Debug.Log($"{CharacterInfo.Instance.GetPlayer()}: Use Skill");
-                break;
-            default:
-                return;
+
+            var allObjects = Physics2D.OverlapCircleAll(skillObject.transform.position, 2f);
+            foreach (var obj in allObjects)
+            {
+                if (obj.gameObject.CompareTag("Ground")) break;
+                obj.gameObject.SetActive(false);
+            }
+            skillObject.transform.position = originPos;
+            skillObject.SetActive(false);
+        }
+        else if (id == 3)
+        {
+            skillObject.transform.position = originPos;
+            skillObject.SetActive(false);
+            // 플라잉 몬스터에서 충돌 감지
         }
     }
+
+    #region Unity Physics Detection
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
@@ -100,4 +165,7 @@ public class CharacterInput : MonoBehaviour
             gm.PlayerHpDecrease(0, "Fire");
         }
     }
+
+#endregion
+
 }
