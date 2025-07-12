@@ -14,15 +14,18 @@ public class SegmentGenerator : MonoBehaviour
 {
     [Header("Generation Settings")]
     public float segmentWidth = 10f;
-    public float moveSpeed = 5f;
-    public int maxActiveSegments = 5;
-    public float patternSpawnInterval = 1f; // 패턴 생성 간격 (초)
+    public int maxActiveSegments = 3;
+    public float patternSpawnInterval = 2f; // 패턴 생성 간격 (초)
+
+    public float spawnAheadDistance = 30f;
 
     [Header("Platform Pattern")]
     public int startPlatformIndex = 0; // 시작 플랫폼 프리팹 인덱스
     public int jumpPlatformIndex = 1; // 점프 플랫폼 프리팹 인덱스
     public int slidingPlatformIndex = 2; // 슬라이딩 플랫폼 프리팹 인덱스
     public int doubleJumpPlatformIndex = 3; // 더블점프 플랫폼 프리팹 인덱스
+    public int doubleJumpPlatform2Index = 4; // 더블점프 플랫폼2 프리팹 인덱스
+    public int jumpAndSlidingPlatformIndex = 5;
 
     private Queue<GameObject> activeSegments;
     private Vector3 nextSpawnPosition;
@@ -33,8 +36,11 @@ public class SegmentGenerator : MonoBehaviour
     private float lastPatternSpawnTime; // 마지막 패턴 생성 시간
     private bool isGeneratingPattern = false; // 패턴 생성 중인지 확인
 
+    [SerializeField] private Transform player; // Player의 위치를 저장
+    [SerializeField] private float segmentSpawnDistance = 20f;
+
     // 점프-슬라이딩-더블점프-점프 패턴
-    private int[] platformPattern = { 1, 2, 3, 1 }; // 점프, 슬라이딩, 더블점프, 점프
+    private int[] platformPattern = { 0, 0, 0, 0 }; // 점프, 슬라이딩, 더블점프, 점프
 
     public static SegmentGenerator Instance { get; private set; }
 
@@ -60,7 +66,7 @@ public class SegmentGenerator : MonoBehaviour
 
     private void Update()
     {
-        MoveSegments();
+        // MoveSegments();
         CheckPatternCreation();
     }
 
@@ -88,38 +94,50 @@ public class SegmentGenerator : MonoBehaviour
         }
     }
 
-    private void MoveSegments()
+    private void CheckPatternCreation()
     {
-        // 모든 활성 세그먼트를 왼쪽으로 이동
-        foreach (GameObject segment in activeSegments)
+        // 가장 앞에 있는 플랫폼(오른쪽 끝)의 x좌표와 플레이어 사이의 거리 계산
+        // 플랫폼이 왼쪽으로 이동하므로, 마지막 생성된 플랫폼의 현재 위치를 확인
+        float rightmostPlatformX = GetRightmostPlatformX();
+        float distanceFromPlayer = rightmostPlatformX - player.position.x;
+
+        // 가장 앞에 있는 플랫폼이 플레이어로부터 충분히 가까워지면 새로운 패턴 생성
+        if (!isGeneratingPattern && distanceFromPlayer <= spawnAheadDistance)
         {
-            if (segment != null)
-            {
-                segment.transform.Translate(Vector3.left * moveSpeed * Time.deltaTime);
-            }
+            GenerateNextPattern();
         }
     }
 
-    private void CheckPatternCreation()
+    private float GetRightmostPlatformX()
     {
-        // 패턴 생성 중이 아니고, 일정 시간이 지났는지 확인
-        if (!isGeneratingPattern && Time.time - lastPatternSpawnTime >= patternSpawnInterval)
+        float rightmostX = float.MinValue;
+
+        // 활성화된 모든 세그먼트 중에서 가장 오른쪽에 있는 것의 x좌표를 찾음
+        foreach (GameObject segment in activeSegments)
         {
-            GenerateNextPattern();
-            lastPatternSpawnTime = Time.time;
+            if (segment != null && segment.transform.position.x > rightmostX)
+            {
+                rightmostX = segment.transform.position.x;
+            }
         }
+
+        // 활성 세그먼트가 없으면 마지막 생성 위치 반환
+        return rightmostX != float.MinValue ? rightmostX : lastSegmentX;
     }
 
     private void GenerateNextPattern()
     {
         isGeneratingPattern = true;
-        
+
         // 패턴의 모든 세그먼트를 순서대로 생성
         for (int i = 0; i < platformPattern.Length; i++)
         {
             GeneratePatternSegment();
         }
-        
+
+        int[] nextPattern = { 1, 2, 3, 1, 1};
+        SetPlatformPattern(nextPattern);
+
         isGeneratingPattern = false;
     }
 
@@ -128,7 +146,7 @@ public class SegmentGenerator : MonoBehaviour
         GameObject segment = SegmentPool.Instance.GetSpecificSegment(startPlatformIndex);
         if (segment != null)
         {
-            segment.transform.position = new Vector3(nextSpawnPosition.x, -4.5f, nextSpawnPosition.z);
+            segment.transform.position = new Vector3(nextSpawnPosition.x, -5.5f, nextSpawnPosition.z);
             activeSegments.Enqueue(segment);
             nextSpawnPosition += Vector3.right * segmentWidth;
             lastSegmentX = nextSpawnPosition.x;
@@ -140,17 +158,23 @@ public class SegmentGenerator : MonoBehaviour
     {
         // 점프-슬라이딩-더블점프-점프 패턴에서 현재 인덱스 가져오기
         int currentPatternIndex = platformPattern[patternIndex];
-        
+
         // 해당하는 플랫폼 타입의 인덱스 결정
         int segmentIndex = GetSegmentIndexByPattern(currentPatternIndex);
-        
+
         GameObject segment = SegmentPool.Instance.GetSpecificSegment(segmentIndex);
         if (segment != null)
         {
-            segment.transform.position = new Vector3(nextSpawnPosition.x, -4.5f, nextSpawnPosition.z);
+            // 가장 오른쪽 플랫폼의 위치를 기준으로 새로운 위치 계산
+            float rightmostX = GetRightmostPlatformX();
+            Vector3 spawnPosition = new Vector3(rightmostX + segmentWidth, -5.5f, nextSpawnPosition.z);
+
+            segment.transform.position = spawnPosition;
             activeSegments.Enqueue(segment);
-            nextSpawnPosition += Vector3.right * segmentWidth;
-            lastSegmentX = nextSpawnPosition.x;
+
+            // nextSpawnPosition과 lastSegmentX 업데이트
+            nextSpawnPosition.x = spawnPosition.x;
+            lastSegmentX = spawnPosition.x;
             totalSegmentsGenerated++;
         }
 
@@ -162,12 +186,18 @@ public class SegmentGenerator : MonoBehaviour
     {
         switch (patternIndex)
         {
+            case 0: // 스타트 플랫폼
+                return startPlatformIndex;
             case 1: // 점프
                 return jumpPlatformIndex;
             case 2: // 슬라이딩
                 return slidingPlatformIndex;
             case 3: // 더블점프
                 return doubleJumpPlatformIndex;
+            case 4: // 더블점프2
+                return doubleJumpPlatform2Index;
+            case 5:
+                return jumpAndSlidingPlatformIndex;
             default:
                 return jumpPlatformIndex; // 기본값
         }
@@ -183,7 +213,6 @@ public class SegmentGenerator : MonoBehaviour
         }
 
         // 초기 상태로 리셋
-        moveSpeed = 5f;
         nextSpawnPosition = Vector3.zero;
         lastSegmentX = 0f;
         isFirstSegment = true;
@@ -196,17 +225,7 @@ public class SegmentGenerator : MonoBehaviour
         GenerateInitialSegments();
     }
 
-    public void SetMoveSpeed(float speed)
-    {
-        moveSpeed = Mathf.Max(0f, speed);
-    }
-
-    public void SetPatternSpawnInterval(float interval)
-    {
-        patternSpawnInterval = Mathf.Max(0.5f, interval);
-    }
-
-    // 패턴 변경 메서드 (필요시 사용)
+    // 패턴 변경 메서드
     public void SetPlatformPattern(int[] newPattern)
     {
         if (newPattern != null && newPattern.Length > 0)

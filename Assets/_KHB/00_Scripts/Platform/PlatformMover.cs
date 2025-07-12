@@ -4,6 +4,7 @@ public class PlatformMover : MonoBehaviour
 {
     private float disableX = -25f;
 
+    [SerializeField]
     private float moveSpeed = 4.0f; // 플랫폼 이동 속도
     private bool isMoving = true;
 
