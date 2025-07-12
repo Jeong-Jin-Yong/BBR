@@ -9,6 +9,7 @@ public class GameManager : MonoBehaviour
 
     [Header("반죽 단계 관련")]
     [SerializeField] GameObject doughGroup; //도우 게임오브젝트 그룹
+    [SerializeField] GameObject memoGroup;
     [SerializeField] Image doughTimerBar; //도우 타이머 바
     [SerializeField] float doughTime; //도우 타이머 시간
     [SerializeField] float doughTimer; //도우 타이머 시간
@@ -37,12 +38,8 @@ public class GameManager : MonoBehaviour
     [SerializeField] float currentHp; //현재 체력
     [SerializeField] bool onFire = false; //불 활성화 여부
     [SerializeField] float fireDamage = 0f; //불 데미지
-    [SerializeField] float fireDamageDuration = 5f; //불 데미지 지속시간
+    [SerializeField] public float fireDamageDuration = 5f; //불 데미지 지속시간
 
-    [Header("Baking Bread")]
-    [SerializeField]
-    private List<ItemData> breadList;
-    private ItemData curBread;
 
     [Header("스테이지 플랫폼 설정")]
     [SerializeField] GameObject[] stage1Prefabs;
@@ -124,13 +121,6 @@ public class GameManager : MonoBehaviour
                 isGameOver = true;
                 gameEndingScript.EndGame();
             }
-            else
-            {
-                stageID = 2;
-                doughGroup.SetActive(false);
-                hpGroup.SetActive(true);
-                //스테이지 2로 전환
-            }
         }
     }
 
@@ -157,6 +147,10 @@ public class GameManager : MonoBehaviour
             stageID = 2;
             if (previousStageID != stageID)
             {
+                memoGroup.SetActive(false);
+                doughGroup.SetActive(false);
+                hpGroup.SetActive(true);
+
                 isStage2 = true;
                 animator.SetInteger("StageID", 2);
                 CharacterInfo.Instance.ActivePlayer();
@@ -186,6 +180,7 @@ public class GameManager : MonoBehaviour
             }
         }
     }
+
 
     private void ChangeStage(int newStageID)
     {

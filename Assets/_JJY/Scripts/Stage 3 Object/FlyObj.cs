@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class FlyObj: MonoBehaviour
 {
-    private float curTime = 4f;
+    private float curTime = 3f;
 
     private void OnEnable()
     {
@@ -21,13 +21,13 @@ public class FlyObj: MonoBehaviour
 
         if (curTime <= 0f)
         {
-            curTime = 4f;
+            curTime = 3f;
         }
-        if (curTime <= 2f)
+        if (curTime <= 1.5f)
         {
             this.gameObject.transform.Translate(Vector3.up * 5f * Time.deltaTime);
         }
-        else if (curTime <= 4f)
+        else if (curTime <= 3f)
         {
             this.gameObject.transform.Translate(Vector3.down * 5f * Time.deltaTime);
         }

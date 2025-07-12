@@ -1,26 +1,30 @@
 using UnityEngine;
 
-public class DustObj : MonoBehaviour
+public class SmoothMover : MonoBehaviour
 {
-    private void OnEnable()
+    private Vector2 direction;
+    private float changeInterval = 2f;
+    private float timer = 0f;
+
+    void Start()
     {
-        Destroy(gameObject, 30f);
+        SetNewDirection();
     }
 
-    private void Update()
+    void Update()
     {
-        Movement();
+        transform.Translate(direction * Time.deltaTime * 3f);
+
+        timer += Time.deltaTime;
+        if (timer > changeInterval)
+        {
+            SetNewDirection();
+            timer = 0f;
+        }
     }
 
-    void Movement()
+    void SetNewDirection()
     {
-        var x = Random.Range(-2f, -1f);
-        var y = Random.Range(-10f, 10f);
-        transform.Translate(new Vector2(x, y) * Time.deltaTime * 1f);
-    }
-
-    private void OnTriggerEnter2D(Collider2D collision)
-    {
-        if (collision.gameObject.CompareTag("Player")) Destroy(gameObject);
+        direction = new Vector2(Random.Range(-2f, -1f), Random.Range(-1f, 1f)).normalized;
     }
 }

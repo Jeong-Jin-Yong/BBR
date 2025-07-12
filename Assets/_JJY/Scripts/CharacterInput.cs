@@ -11,10 +11,9 @@ public class CharacterInput : MonoBehaviour
     private int doughMaxSkillCount = 3;
     private int doughCurSkillCount;
 
-
     [Header("Jump")]
     [SerializeField]
-    private float jumpPower = 250f;
+    private float jumpPower = 650f;
     [SerializeField]
     private int jumpMaxCount = 2;
     private int jumpCount;
@@ -25,11 +24,17 @@ public class CharacterInput : MonoBehaviour
     [SerializeField]
     private float doughSkillDistance = 400f;
     [SerializeField]
-    private float breadSkillDistance = 300f;
+    private float breadSkillDistance = 500f;
 
     private Rigidbody2D rb;
 
     [SerializeField]private Animator animator;
+
+    [SerializeField] private GameObject fireGroup;
+    [SerializeField] private GameObject bubbleGroup;
+    [SerializeField] Animator[] bubbleAnim;
+    float bubbleCooltime = 10.0f;
+    float bubbleTimer;
 
     #region Unity Life Style
 
@@ -50,6 +55,8 @@ public class CharacterInput : MonoBehaviour
 
     private void Update()
     {
+        bubbleTimer += Time.deltaTime;
+
         if (Input.GetKeyDown(KeyCode.Space))
         {
             switch ((int)CharacterInfo.Instance.GetPlayer())
@@ -64,9 +71,15 @@ public class CharacterInput : MonoBehaviour
                     }
                     break;
                 case 1:
-                    if (gm.GetOnFire())
+                    if (gm.GetOnFire() && bubbleCooltime <= bubbleTimer)
                     {
                         gm.InitOnFire();
+                        bubbleTimer = 0f;
+                        bubbleGroup.gameObject.SetActive(true);
+                        for (int i = 0; i < bubbleAnim.Length; i++)
+                        {
+                            bubbleAnim[i].Play("BUBUBUUBBLE", 0, 0);
+                        }
                     }
                     break;
                 case 2:
@@ -79,14 +92,14 @@ public class CharacterInput : MonoBehaviour
                     break;
             }
         }
-        else if(Input.GetKeyUp(KeyCode.Space))
+        else if (Input.GetKeyUp(KeyCode.Space))
         {
             switch ((int)CharacterInfo.Instance.GetPlayer())
             {
                 case -1:
                     return;
                 case 0:
-                        animator.SetBool("IsAttack", false);
+                    animator.SetBool("IsAttack", false);
                     break;
                 case 1:
                     break;
@@ -101,7 +114,7 @@ public class CharacterInput : MonoBehaviour
         {
             Jump();
         }
-        
+
         if (Input.GetMouseButtonDown(1))
         {
             animator.SetBool("IsSlide", true);
@@ -110,7 +123,95 @@ public class CharacterInput : MonoBehaviour
         {
             animator.SetBool("IsSlide", false);
         }
+
+        if (gm.fireDamageDuration > 0 && fireGroup != null)
+            fireGroup.gameObject.SetActive(true);
+        else if (gm.fireDamageDuration <= 0 && fireGroup != null)
+            fireGroup.gameObject.SetActive(false);
     }
+
+    //#region Unity Life Style
+
+    //private void OnEnable()
+    //{
+    //    rb = GetComponent<Rigidbody2D>();
+    //    doughCurSkillCount = 0;
+    //    animator.SetBool("IsAttack", false);
+    //    animator.SetBool("IsSlide", false);
+    //}
+
+    //private void OnDisable()
+    //{
+    //    //CharacterInfo.Instance.ActivePlayer();
+    //}
+
+    //#endregion
+
+    //private void Update()
+    //{
+    //    if (Input.GetKeyDown(KeyCode.Space))
+    //    {
+    //        switch ((int)CharacterInfo.Instance.GetPlayer())
+    //        {
+    //            case -1:
+    //                return;
+    //            case 0:
+    //                if (skillObject != null && doughCurSkillCount < doughMaxSkillCount && !skillObject[0].activeSelf)
+    //                {
+    //                    ActiveDoughSkill();
+    //                    animator.SetBool("IsAttack", true);
+    //                }
+    //                break;
+    //            case 1:
+    //                if (gm.GetOnFire())
+    //                {
+    //                    animator.SetBool("IsAttack", true);
+    //                    gm.InitOnFire();
+    //                }
+    //                break;
+    //            case 2:
+    //                if (skillObject != null && !skillObject.All(obj => obj.activeSelf))
+    //                {
+    //                    ActiveBreadSkill();
+    //                }
+    //                break;
+    //            default:
+    //                break;
+    //        }
+    //    }
+    //    else if(Input.GetKeyUp(KeyCode.Space))
+    //    {
+    //        switch ((int)CharacterInfo.Instance.GetPlayer())
+    //        {
+    //            case -1:
+    //                return;
+    //            case 0:
+    //                animator.SetBool("IsAttack", false);
+    //                break;
+    //            case 1:
+    //                animator.SetBool("IsAttack", false);
+    //                break;
+    //            case 2:
+    //                break;
+    //            default:
+    //                break;
+    //        }
+    //    }
+
+    //    if (Input.GetMouseButtonDown(0) && !animator.GetBool("IsSlide"))
+    //    {
+    //        Jump();
+    //    }
+
+    //    if (Input.GetMouseButtonDown(1))
+    //    {
+    //        animator.SetBool("IsSlide", true);
+    //    }
+    //    else if (Input.GetMouseButtonUp(1))
+    //    {
+    //        animator.SetBool("IsSlide", false);
+    //    }
+    //}
 
     void Jump()
     {
@@ -181,21 +282,36 @@ public class CharacterInput : MonoBehaviour
         {
             jumpCount = 0;
         }
+        else
+        {
+            return;
+        }
     }
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        if(other.CompareTag("Obstacle"))
+        if (!animator.GetBool("IsGod"))
         {
-            gm.PlayerHpDecrease(10, "Obstacle");
-        }
+            if(other.CompareTag("Obstacle"))
+            {
+                gm.PlayerHpDecrease(10, "Obstacle");
+                StartCoroutine(EndGod());
 
-        if(other.CompareTag("Fire"))
-        {
-            gm.PlayerHpDecrease(0, "Fire");
+            }
+            else if(other.CompareTag("Fire"))
+            {
+                gm.PlayerHpDecrease(0, "Fire");
+                StartCoroutine(EndGod());
+            }
         }
     }
 
-#endregion
+    IEnumerator EndGod()
+    {
+        animator.SetBool("IsGod", true);
+        yield return new WaitForSeconds(3f);
+        animator.SetBool("IsGod", false);
+    }
+    #endregion
 
 }

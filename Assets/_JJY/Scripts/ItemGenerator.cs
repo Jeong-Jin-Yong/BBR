@@ -43,13 +43,13 @@ public class ItemGenerator : MonoBehaviour
                 if (gm.stageID == 1 && IsValid(itemSpawnpoint[i].transform))
                 {
                     var spawnPos = itemSpawnpoint[Random.Range(0, itemSpawnpoint.Count)].transform.position;
-                    var obj = Instantiate(stage1Items[Random.Range(0, stage1Items.Count)], spawnPos, Quaternion.identity);
+                    Instantiate(stage1Items[Random.Range(0, stage1Items.Count)], spawnPos, Quaternion.identity);
                     break;
                 }
                 else if (gm.stageID == 2 && IsValid(itemSpawnpoint[i].transform))
                 {
                     var spawnPos = itemSpawnpoint[Random.Range(0, itemSpawnpoint.Count)].transform.position;
-                    var obj = Instantiate(stage2Items[Random.Range(0, stage2Items.Count)], spawnPos, Quaternion.identity);
+                    Instantiate(stage2Items[Random.Range(0, stage2Items.Count)], spawnPos, Quaternion.identity);
                     itemSpawnInterval = 10f;
                     break;
                 }
