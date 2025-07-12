@@ -83,11 +83,12 @@ public class IngredientManager : MonoBehaviour
         }
     }
 
-    public void IngredientCheck(GameObject obj)
+    public bool IngredientCheck(GameObject obj)
     {
         var ingredients = target.ingredients;
         string cleanedName = obj.name.Replace("(Clone)", "").Trim();
 
+        // 필요한 재료 검사
         for (int i = 0; i < ingredients.needIngredients.Length; i++)
         {
             if (cleanedName == ingredients.needIngredients[i].name)
@@ -97,8 +98,6 @@ public class IngredientManager : MonoBehaviour
 
                 if (collectedCounts[i] >= ingredients.needCounts[i])
                 {
-                    Debug.Log($"{cleanedName} is fully collected!");
-
                     switch (i)
                     {
                         case 0: gameManager.hasDough1 = true; break;
@@ -106,15 +105,15 @@ public class IngredientManager : MonoBehaviour
                         case 2: gameManager.hasDough3 = true; break;
                         case 3: gameManager.hasDough4 = true; break;
                         case 4: gameManager.hasDough5 = true; break;
-                        default: Debug.LogWarning("No matching hasDough variable for index " + i); break;
                     }
                 }
 
                 UpdateIngredientUI();
-                return;
+                return true; // ✅ 필요한 재료였다
             }
         }
 
+        // 죽은 재료 검사 (스테이지 1 전용)
         if (gameManager.stageID == 1)
         {
             for (int i = 0; i < ingredients.deadIngredients.Length; i++)
@@ -126,15 +125,16 @@ public class IngredientManager : MonoBehaviour
 
                     if (deadCollectedCounts[i] >= ingredients.deadCounts[i])
                     {
-                        Debug.LogError($"{cleanedName} collected too much! Game Over.");
+                        Debug.LogError($"{cleanedName} too much! Game Over.");
                         gameManager.GameOver();
                     }
 
-                    return;
+                    return false;
                 }
             }
         }
 
-        Debug.Log($"⚠️ {cleanedName} is not part of the current recipe.");
+        Debug.Log($"⚠️ {cleanedName} is not needed.");
+        return false; // ❌ 필요 없는 재료
     }
 }
