@@ -16,11 +16,10 @@ MonoBehaviour:
     name: WhiteBread
     spawnIngredients: []
     needIngredients:
-    - {fileID: 4430540766199647008, guid: 18d32d5c3a9d207478b7075e4b434867, type: 3}
-    - {fileID: 6404102274232880559, guid: a21dc07d067653849acde3d0e563d003, type: 3}
-    - {fileID: 3856315559061909924, guid: 64c45a6a3936fc24daa87197fcb460b5, type: 3}
-    - {fileID: 6273870468198357895, guid: d208836bb4acb104bbb16c95affc2b23, type: 3}
+    - {fileID: 8888397580789869145, guid: 70fddf740d6ca2f42a69ddee3f27b24e, type: 3}
+    - {fileID: 2329535851884867064, guid: 3af88c5bc1e55144eb65aeb9c2fb720e, type: 3}
+    - {fileID: 48939352059295309, guid: 00a06519e8990ad419836fb759517ef9, type: 3}
     deadIngredients:
-    - {fileID: 5493571405249627365, guid: cfe8a11bb1020c34f8bda72464ab015d, type: 3}
-    needCounts: 0a0000000a0000000a0000000a000000
-    deadCounts: 05000000
+    - {fileID: 3994939525100016490, guid: be9a3fdc314cc7142b21fe9e68facc55, type: 3}
+    needCounts: 030000000300000003000000
+    deadCounts: 02000000
