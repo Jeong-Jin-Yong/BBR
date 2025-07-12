@@ -235,6 +235,11 @@ public class SegmentGenerator : MonoBehaviour
         }
     }
 
+    public int[] GetCurrentPattern()
+    {
+        return platformPattern;
+    }
+
     // PlatformMover에서 호출할 메서드 - activeSegments 큐에서 세그먼트 제거
     public void RemoveSegmentFromQueue(GameObject segment)
     {
@@ -265,4 +270,16 @@ public class SegmentGenerator : MonoBehaviour
             }
         }
     }
+
+    public void ResetAndGenerate()
+    {
+        ResetGenerator();
+    }
+
+    public int GetActiveSegmentCount()
+    {
+        return activeSegments.Count;
+    }
+
+
 }

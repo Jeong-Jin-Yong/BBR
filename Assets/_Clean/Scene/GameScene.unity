@@ -2534,6 +2534,24 @@ MonoBehaviour:
   fireDamage: 0
   fireDamageDuration: 5
   breadList: []
+  stage1Prefabs:
+  - {fileID: 1286961029112596535, guid: 7963af2f090aae2478f31b5b0a05e6c0, type: 3}
+  - {fileID: 2609064549146130633, guid: bc21adaba2a839e429300c43c2399fa9, type: 3}
+  - {fileID: 2609064549146130633, guid: cc9ec5b12ba09c049ac9ff191fba3c06, type: 3}
+  - {fileID: 2609064549146130633, guid: fa9737f3657808944a12d9d8b9aa9e36, type: 3}
+  stage2Prefabs:
+  - {fileID: 1286961029112596535, guid: 4ed04646053052346946344bcdcf7eb6, type: 3}
+  - {fileID: 2609064549146130633, guid: 1c00b78a6990c7c458314d53a8bf760a, type: 3}
+  - {fileID: 2609064549146130633, guid: c0836c446bbfe3f4292771ed48e76b04, type: 3}
+  - {fileID: 2609064549146130633, guid: 94a1714880890bd4f8366000f9f35254, type: 3}
+  stage3Prefabs:
+  - {fileID: 1286961029112596535, guid: b87126895c3d6a64b97b76fa4c8cb056, type: 3}
+  - {fileID: 2609064549146130633, guid: 0a32c8bbd7e0ecb47b8ca8d3d4ef3abd, type: 3}
+  - {fileID: 2609064549146130633, guid: b0c9f499959bdeb46b88d36ecf0d3ae0, type: 3}
+  - {fileID: 2609064549146130633, guid: 6579824154a249d46a03fa16252b29b9, type: 3}
+  stage1Patterns: 00000000010000000200000001000000
+  stage2Patterns: 00000000020000000100000002000000
+  stage3Patterns: 00000000010000000200000001000000
 --- !u!1 &872510951
 GameObject:
   m_ObjectHideFlags: 0
@@ -3456,7 +3474,7 @@ MonoBehaviour:
   - {fileID: 5907181110151293826, guid: ec2b0a30a61d25b4095eaaacf4ec6cb1, type: 3}
   - {fileID: 2694140231836989607, guid: 0a09086cc28eeb248a0f2f49cb41291d, type: 3}
   - {fileID: 6062038696385675710, guid: 2536ed38ad83f8341988e566c4404b3e, type: 3}
-  poolSize: 3
+  poolSize: 5
 --- !u!1 &1200929712
 GameObject:
   m_ObjectHideFlags: 0
