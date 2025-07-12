@@ -9,7 +9,8 @@ public class IngredientManager : MonoBehaviour
     public ItemData[] itemDatas;
     [SerializeField] ItemData target;
 
-    private List<Text> ingredientTexts = new List<Text>();
+    //private List<Text> ingredientTexts = new List<Text>();
+    private Dictionary<string, Text> ingredientTexts = new Dictionary<string, Text>();
 
     int[] collectedCounts;
     int[] deadCollectedCounts;
@@ -31,55 +32,86 @@ public class IngredientManager : MonoBehaviour
         UpdateIngredientUI();
     }
 
+
     private void MapTextUI()
     {
         ingredientTexts.Clear();
 
-        for (int i = 0; i < target.ingredients.needIngredients.Length; i++)
+        // 필요한 재료 매핑
+        foreach (var ing in target.ingredients.needIngredients)
         {
-            string ingredientName = target.ingredients.needIngredients[i].name;
-
-            Transform ingredientObj = currentIngredientGroup.Find(ingredientName);
+            string name = ing.name;
+            Transform ingredientObj = currentIngredientGroup.Find(name);
             if (ingredientObj != null)
             {
                 Transform textObj = ingredientObj.Find("Text");
                 if (textObj != null)
                 {
                     Text txt = textObj.GetComponent<Text>();
-                    if (txt != null)
-                    {
-                        ingredientTexts.Add(txt);
-                    }
-                    else
-                    {
-                        Debug.LogWarning($"⚠️ Text 컴포넌트가 {ingredientName}에 존재하지 않습니다.");
-                    }
+                    ingredientTexts[name] = txt;
                 }
-                else
-                {
-                    Debug.LogWarning($"⚠️ '{ingredientName}' 오브젝트에 'Text' 자식이 없습니다.");
-                }
-            }
-            else
-            {
-                Debug.LogWarning($"⚠️ 그룹에 '{ingredientName}' 오브젝트가 존재하지 않습니다.");
             }
         }
 
-        // 배열 길이와 텍스트 개수가 일치하지 않으면 경고
-        if (ingredientTexts.Count != collectedCounts.Length)
+        // 죽은 재료도 매핑
+        foreach (var ing in target.ingredients.deadIngredients)
         {
-            Debug.LogError("❌ UI 텍스트 수와 필요 재료 수가 일치하지 않습니다.");
+            string name = ing.name;
+            Transform ingredientObj = currentIngredientGroup.Find(name);
+            if (ingredientObj != null)
+            {
+                Transform textObj = ingredientObj.Find("Text");
+                if (textObj != null)
+                {
+                    Text txt = textObj.GetComponent<Text>();
+                    ingredientTexts[name] = txt;
+                }
+            }
         }
     }
 
+    private struct IngredientInfo
+    {
+        public string name;
+        public bool isDead;
+
+        public IngredientInfo(string name, bool isDead)
+        {
+            this.name = name;
+            this.isDead = isDead;
+        }
+    }
+
+
     private void UpdateIngredientUI()
     {
-        for (int i = 0; i < ingredientTexts.Count; i++)
+        // 수집해야 할 재료
+        for (int i = 0; i < target.ingredients.needIngredients.Length; i++)
         {
-            int current = collectedCounts[i];
-            int max = target.ingredients.needCounts[i];
-            ingredientTexts[i].text = $"{current} / {max}";
+            string name = target.ingredients.needIngredients[i].name;
+            if (ingredientTexts.ContainsKey(name))
+            {
+                int current = collectedCounts[i];
+                int max = target.ingredients.needCounts[i];
+                ingredientTexts[name].text = $"{current} / {max}";
+
+                if (current >= max)
+                    ingredientTexts[name].color = Color.green;
+            }
+        }
+
+        // 죽으면 안 되는 재료
+        for (int i = 0; i < target.ingredients.deadIngredients.Length; i++)
+        {
+            string name = target.ingredients.deadIngredients[i].name;
+            if (ingredientTexts.ContainsKey(name))
+            {
+                int max = target.ingredients.deadCounts[i];
+                int used = deadCollectedCounts[i];
+                int remaining = Mathf.Max(0, max - used);
+                ingredientTexts[name].text = $"{remaining}";
+                ingredientTexts[name].color = Color.red;
+            }
         }
     }
 
@@ -96,24 +128,14 @@ public class IngredientManager : MonoBehaviour
                 collectedCounts[i]++;
                 Debug.Log($"✅ Collected {cleanedName}: {collectedCounts[i]}/{ingredients.needCounts[i]}");
 
-                if (collectedCounts[i] >= ingredients.needCounts[i])
-                {
-                    switch (i)
-                    {
-                        case 0: gameManager.hasDough1 = true; break;
-                        case 1: gameManager.hasDough2 = true; break;
-                        case 2: gameManager.hasDough3 = true; break;
-                        case 3: gameManager.hasDough4 = true; break;
-                        case 4: gameManager.hasDough5 = true; break;
-                    }
-                }
-
+                // 수량 달성 여부만 체크하고, 전체 완료 여부는 따로 함수에서 확인
                 UpdateIngredientUI();
-                return true; // ✅ 필요한 재료였다
+                CheckAllDoughCollected(); // ← 여기서 전체 완료 검사
+                return true;
             }
         }
 
-        // 죽은 재료 검사 (스테이지 1 전용)
+        // 죽은 재료 검사
         if (gameManager.stageID == 1)
         {
             for (int i = 0; i < ingredients.deadIngredients.Length; i++)
@@ -129,13 +151,39 @@ public class IngredientManager : MonoBehaviour
                         gameManager.GameOver();
                     }
 
+                    UpdateIngredientUI(); // 즉시 갱신
                     return false;
                 }
             }
         }
 
         Debug.Log($"⚠️ {cleanedName} is not needed.");
-        return false; // ❌ 필요 없는 재료
+        return false;
+    }
+
+    private void CheckAllDoughCollected()
+    {
+        int completeCount = 0;
+
+        for (int i = 0; i < collectedCounts.Length; i++)
+        {
+            if (collectedCounts[i] >= target.ingredients.needCounts[i])
+            {
+                completeCount++;
+            }
+        }
+
+        // 모두 모은 경우
+        if (completeCount == target.ingredients.needIngredients.Length)
+        {
+            gameManager.hasDough1 = true;
+            gameManager.hasDough2 = true;
+            gameManager.hasDough3 = true;
+            gameManager.hasDough4 = true;
+            gameManager.hasDough5 = true;
+        }
+
+        Debug.Log("✅ All needed ingredients collected! All hasDough flags set.");
     }
 
     public ItemData GetTarget()
