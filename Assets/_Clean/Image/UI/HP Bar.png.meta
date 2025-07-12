@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: c650f362291ffbf48af1a94fc970a2fc
+guid: 682aa971f3bfbdb4cb396ffba99ecad6
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -34,7 +34,7 @@ TextureImporter:
   maxTextureSize: 2048
   textureSettings:
     serializedVersion: 2
-    filterMode: 1
+    filterMode: 0
     aniso: 1
     mipBias: 0
     wrapU: 1
@@ -97,23 +97,23 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Dough_0
+      name: HP Bar_0
       rect:
         serializedVersion: 2
-        x: 76
-        y: 415
-        width: 834
-        height: 734
-      alignment: 7
-      pivot: {x: 0.5, y: 0}
+        x: 11
+        y: 12
+        width: 499
+        height: 25
+      alignment: 0
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: b32e0ba5e89d34443afa707e8b279ffe
-      internalID: -1109285314
+      spriteID: c7674d39339901847af01b5968292827
+      internalID: 541155522
       vertices: []
       indices: 
       edges: []
@@ -122,7 +122,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 5e97eb03825dee720800000000000000
+    spriteID: 0d2ee84a5f998a547aa5a25b75735e0c
     internalID: 0
     vertices: []
     indices: 
@@ -132,7 +132,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      Dough_0: -1109285314
+      HP Bar_0: 541155522
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

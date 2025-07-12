@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: c650f362291ffbf48af1a94fc970a2fc
+guid: 9020d4a15d7c76d4b969f45327b7c3cb
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -34,12 +34,12 @@ TextureImporter:
   maxTextureSize: 2048
   textureSettings:
     serializedVersion: 2
-    filterMode: 1
+    filterMode: 0
     aniso: 1
     mipBias: 0
     wrapU: 1
     wrapV: 1
-    wrapW: 0
+    wrapW: 1
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
@@ -97,23 +97,23 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Dough_0
+      name: 1_1-Photoroom_0
       rect:
         serializedVersion: 2
-        x: 76
-        y: 415
-        width: 834
-        height: 734
-      alignment: 7
-      pivot: {x: 0.5, y: 0}
+        x: 40
+        y: 53
+        width: 700
+        height: 617
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: b32e0ba5e89d34443afa707e8b279ffe
-      internalID: -1109285314
+      spriteID: d4e60c37a2991494a979815741d3670a
+      internalID: -475909939
       vertices: []
       indices: 
       edges: []
@@ -122,7 +122,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 5e97eb03825dee720800000000000000
+    spriteID: 90acff9c8b12de14aacf6250b3700d1c
     internalID: 0
     vertices: []
     indices: 
@@ -132,7 +132,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      Dough_0: -1109285314
+      1_1-Photoroom_0: -475909939
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

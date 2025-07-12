@@ -10,6 +10,9 @@ public class ItemData : ScriptableObject
         public GameObject[] spawnIngredients;
         public GameObject[] needIngredients;
         public GameObject[] deadIngredients;
+
+        public int[] needCounts;
+        public int[] deadCounts;
     }
 
     public Ingredients ingredients;

@@ -10,14 +10,15 @@ public class GameManager : MonoBehaviour
     [SerializeField] Image doughTimerBar; //도우 타이머 바
     [SerializeField] float doughTime; //도우 타이머 시간
     [SerializeField] float doughTimer; //도우 타이머 시간
-    [SerializeField] bool hasDough1 = false; //재료1 다 모았는지 여부
-    [SerializeField] bool hasDough2 = false; //재료2 다 모았는지 여부
-    [SerializeField] bool hasDough3 = false; //재료3 다 모았는지 여부
+    public bool hasDough1 = false; //재료1 다 모았는지 여부
+    public bool hasDough2 = false; //재료2 다 모았는지 여부
+    public bool hasDough3 = false; //재료3 다 모았는지 여부
 
     [Header("진행도 관련")]
     [SerializeField] Slider progressSlider; //진행도 슬라이더
     [SerializeField] float progressTime; //진행도 시간 = 최대 플레이 시간
     [SerializeField] float progressTimer; //진행도 타이머
+    [SerializeField] Animator animator; //진행도 애니메이터
     public int stageID = 1; //스테이지 1, 2, 3
     bool isStage1 = false;
     bool isStage2 = false;
@@ -117,7 +118,7 @@ public class GameManager : MonoBehaviour
 
         float progress = progressSlider.value;
 
-        if (progress <= 0.3f)
+        if (progress <= 0.33f)
         {
             stageID = 1;
             if (previousStageID != stageID)
@@ -126,12 +127,13 @@ public class GameManager : MonoBehaviour
                 previousStageID = stageID;
             }
         }
-        else if (progress <= 0.6f)
+        else if (progress <= 0.66f)
         {
             stageID = 2;
             if (previousStageID != stageID)
             {
                 isStage2 = true;
+                animator.SetInteger("StageID", 2);
                 CharacterInfo.Instance.ActivePlayer();
                 previousStageID = stageID;
             }
@@ -142,6 +144,7 @@ public class GameManager : MonoBehaviour
             if (previousStageID != stageID)
             {
                 isStage3 = true;
+                animator.SetInteger("StageID", 3);
                 CharacterInfo.Instance.ActivePlayer();
                 previousStageID = stageID;
             }
@@ -216,5 +219,18 @@ public class GameManager : MonoBehaviour
         onFire = false;
         fireDamage = 0;
         fireDamageDuration = 0;
+    }
+
+    public bool AllIngredientsReady()
+    {
+        return hasDough1 && hasDough2 && hasDough3;
+    }
+
+    public void GameOver()
+    {
+        if (isGameOver) return;
+
+        isGameOver = true;
+        gameEndingScript.EndGame();
     }
 }

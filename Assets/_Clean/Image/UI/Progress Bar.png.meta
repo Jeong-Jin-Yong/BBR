@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: c650f362291ffbf48af1a94fc970a2fc
+guid: 17fc59887d983fe4e86a50215a2f73e2
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -34,7 +34,7 @@ TextureImporter:
   maxTextureSize: 2048
   textureSettings:
     serializedVersion: 2
-    filterMode: 1
+    filterMode: 0
     aniso: 1
     mipBias: 0
     wrapU: 1
@@ -97,23 +97,23 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Dough_0
+      name: Progress Bar_0
       rect:
         serializedVersion: 2
-        x: 76
-        y: 415
-        width: 834
-        height: 734
-      alignment: 7
-      pivot: {x: 0.5, y: 0}
+        x: 6
+        y: 25
+        width: 703
+        height: 18
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: b32e0ba5e89d34443afa707e8b279ffe
-      internalID: -1109285314
+      spriteID: 6552b38d2457a3244aa9d1274609727d
+      internalID: -1132323252
       vertices: []
       indices: 
       edges: []
@@ -122,7 +122,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 5e97eb03825dee720800000000000000
+    spriteID: cb7629a4295f67f4dab61d076cf2f4e1
     internalID: 0
     vertices: []
     indices: 
@@ -132,7 +132,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      Dough_0: -1109285314
+      Progress Bar_0: -1132323252
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

@@ -101,25 +101,23 @@ public class CharacterInput : MonoBehaviour
 
     void ActiveDoughSkill()
     {
-        Vector2 originPos = skillObject.transform.position;
         skillObject.SetActive(true);
 
-        var dir = (this.transform.right + this.transform.up) * doughSkillDistance;
+        var dir = (this.transform.right + this.transform.up).normalized * doughSkillDistance;
         skillObject.GetComponent<Rigidbody2D>().AddForce((Vector2)dir);
-        StartCoroutine(ActiveSkillEnd(1, 1.1f, originPos));
+        StartCoroutine(ActiveSkillEnd(1, 1.8f));
     }
 
     void ActiveBreadSkill()
     {
-        Vector2 originPos = skillObject.transform.position;
         skillObject.SetActive(true);
 
         var dir = this.transform.right * breadSkillDistance;
         skillObject.GetComponent<Rigidbody2D>().AddForce((Vector2)dir);
-        StartCoroutine(ActiveSkillEnd(3, 2f, originPos));
+        StartCoroutine(ActiveSkillEnd(3, 2f));
     }
 
-    IEnumerator ActiveSkillEnd(int id,float waiting, Vector2 originPos)
+    IEnumerator ActiveSkillEnd(int id, float waiting)
     {
         yield return new WaitForSeconds(waiting);
 
@@ -132,12 +130,12 @@ public class CharacterInput : MonoBehaviour
                 if (obj.gameObject.CompareTag("Ground")) break;
                 obj.gameObject.SetActive(false);
             }
-            skillObject.transform.position = originPos;
+            skillObject.transform.localPosition = new Vector3(4.5f, 4f, 0f);
             skillObject.SetActive(false);
         }
         else if (id == 3)
         {
-            skillObject.transform.position = originPos;
+            skillObject.transform.localPosition = new Vector3(4.5f, 4f, 0f);
             skillObject.SetActive(false);
             // 플라잉 몬스터에서 충돌 감지
         }
