@@ -63,7 +63,7 @@ public class GameEnding : MonoBehaviour
 
     public void Exit()
     {
-        SceneManager.LoadScene("Title_LSU");
+        SceneManager.LoadScene("TitleScene");
         //Application.Quit();
     }
 }

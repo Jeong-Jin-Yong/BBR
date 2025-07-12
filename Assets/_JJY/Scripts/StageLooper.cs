@@ -9,6 +9,7 @@ public class StageLooper : MonoBehaviour
     public List<GameObject> stage1;
     public List<GameObject> stage2;
     public List<GameObject> stage3;
+
     private void Update()
     {
         if (stage1 != null && stage2 != null && stage3 != null)
@@ -23,7 +24,7 @@ public class StageLooper : MonoBehaviour
         {
             foreach (var stage in stage1)
             {
-                stage.transform.Translate(Vector3.left * 4.0f * Time.deltaTime);
+                stage.transform.Translate(Vector3.left * 3.0f * Time.deltaTime);
                 if (stage.transform.position.x <= -17.3f)
                 {
                     stage.transform.position = new Vector3(28.6f, 0f, 0f);

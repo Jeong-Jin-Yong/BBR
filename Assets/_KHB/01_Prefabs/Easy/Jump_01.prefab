@@ -78,7 +78,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: eefb5eb7beb70ba4c8095264770e53fc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveSpeed: 4
 --- !u!1 &2894030826474244596
 GameObject:
   m_ObjectHideFlags: 0
@@ -187,15 +186,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6611237120825189774, guid: 4714d73c2160cea45a3ca616d9f43995, type: 3}
       propertyPath: m_LocalScale.x
-      value: 0.62464
+      value: 0.8
       objectReference: {fileID: 0}
     - target: {fileID: 6611237120825189774, guid: 4714d73c2160cea45a3ca616d9f43995, type: 3}
       propertyPath: m_LocalScale.y
-      value: 0.7808
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6611237120825189774, guid: 4714d73c2160cea45a3ca616d9f43995, type: 3}
       propertyPath: m_LocalScale.z
-      value: 0.7808
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6611237120825189774, guid: 4714d73c2160cea45a3ca616d9f43995, type: 3}
       propertyPath: m_LocalPosition.x

@@ -23,4 +23,4 @@ MonoBehaviour:
     - {fileID: 727352662391269925, guid: c24417ce6c628ae41beb81fba16947e8, type: 3}
     - {fileID: 3194833235521125375, guid: 45b078955203c2c46a37caf6b6ac0bdb, type: 3}
     needCounts: 0a0000000a0000000f000000
-    deadCounts: 0500000005000000
+    deadCounts: 0f0000000f000000

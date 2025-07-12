@@ -24,4 +24,4 @@ MonoBehaviour:
     deadIngredients:
     - {fileID: 5493571405249627365, guid: cfe8a11bb1020c34f8bda72464ab015d, type: 3}
     needCounts: 0700000007000000070000000700000007000000
-    deadCounts: 05000000
+    deadCounts: 14000000

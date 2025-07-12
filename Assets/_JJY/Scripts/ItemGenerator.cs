@@ -11,7 +11,7 @@ public class ItemGenerator : MonoBehaviour
 
     [Header("Item Generate Time")]
     [SerializeField]
-    private float itemSpawnInterval = 5f;
+    private float itemSpawnInterval = 3f;
 
     private ItemData itemData;
 

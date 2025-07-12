@@ -148,7 +148,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3760a2d8f59d12f4c88f17d7c115b5ca, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gm: {fileID: 867182601}
+  gm: {fileID: 867182605}
   stage1:
   - {fileID: 1994259122}
   - {fileID: 1246596801}
@@ -385,7 +385,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e6880678dfb459b4d89078ecccdf3097, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gm: {fileID: 867182601}
+  gm: {fileID: 0}
   doughSkillDistance: 250
   breadSkillDistance: 500
   jumpPower: 250
@@ -6128,7 +6128,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6dde1617d56f07447af85c5ea60dd089, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gm: {fileID: 867182601}
+  gm: {fileID: 867182605}
   itemSpawnpoint:
   - {fileID: 1184178105}
   - {fileID: 897944528}
@@ -7256,7 +7256,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 867182602}
-  - component: {fileID: 867182601}
+  - component: {fileID: 867182605}
   - component: {fileID: 867182603}
   - component: {fileID: 867182604}
   m_Layer: 0
@@ -7266,43 +7266,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &867182601
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 867182600}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8b25f249386220f41b6fd2db726ba8d5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  doughGroup: {fileID: 1895680943}
-  doughTimerBar: {fileID: 505468204}
-  doughTime: 120
-  doughTimer: 0
-  hasDough1: 0
-  hasDough2: 0
-  hasDough3: 0
-  hasDough4: 0
-  hasDough5: 0
-  progressSlider: {fileID: 9860333}
-  progressTime: 360
-  progressTimer: 0
-  animator: {fileID: 1018015842}
-  stageID: 1
-  hpGroup: {fileID: 1140842007}
-  hpBar: {fileID: 1683147230}
-  maxHp: 100
-  currentHp: 100
-  onFire: 0
-  fireDamage: 0
-  fireDamageDuration: 5
-  breadList:
-  - {fileID: 11400000, guid: 7e17f78d0eeea70449bd9c58136a0f4c, type: 2}
-  - {fileID: 11400000, guid: 6371c3c64f551e744a91cc5f558fd1b1, type: 2}
-  - {fileID: 11400000, guid: fc6cb70f039ba0e42831fb0101e307ae, type: 2}
 --- !u!4 &867182602
 Transform:
   m_ObjectHideFlags: 0
@@ -7354,7 +7317,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f02511989beeb004a9945989b0a9638f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gameManager: {fileID: 867182601}
+  gameManager: {fileID: 867182605}
   itemDatas:
   - {fileID: 11400000, guid: 7e17f78d0eeea70449bd9c58136a0f4c, type: 2}
   - {fileID: 11400000, guid: 6371c3c64f551e744a91cc5f558fd1b1, type: 2}
@@ -7365,6 +7328,40 @@ MonoBehaviour:
   - {fileID: 2048368391}
   - {fileID: 1049727941}
   - {fileID: 1503117126}
+--- !u!114 &867182605
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 867182600}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 152c1bb7e6a283449b4ff55752306365, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  doughGroup: {fileID: 1895680943}
+  doughTimerBar: {fileID: 505468204}
+  doughTime: 120
+  doughTimer: 0
+  hasDough1: 0
+  hasDough2: 0
+  hasDough3: 0
+  hasDough4: 0
+  hasDough5: 0
+  progressSlider: {fileID: 9860333}
+  progressTime: 360
+  progressTimer: 0
+  animator: {fileID: 1018015842}
+  stageID: 1
+  hpGroup: {fileID: 1140842007}
+  hpBar: {fileID: 1683147230}
+  maxHp: 100
+  currentHp: 100
+  onFire: 0
+  fireDamage: 0
+  fireDamageDuration: 5
+  breadList: []
 --- !u!1 &872510951
 GameObject:
   m_ObjectHideFlags: 0
@@ -10261,7 +10258,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e6880678dfb459b4d89078ecccdf3097, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gm: {fileID: 867182601}
+  gm: {fileID: 0}
   doughSkillDistance: 250
   breadSkillDistance: 100
   jumpPower: 2
@@ -11171,7 +11168,7 @@ PrefabInstance:
     - target: {fileID: 1719023854692542411, guid: 690b7eccd38be514594c36e8a9463106, type: 3}
       propertyPath: gm
       value: 
-      objectReference: {fileID: 867182601}
+      objectReference: {fileID: 867182605}
     - target: {fileID: 5036220978147616577, guid: 690b7eccd38be514594c36e8a9463106, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0.76
@@ -11215,6 +11212,10 @@ PrefabInstance:
     - target: {fileID: 6368615273560110518, guid: 690b7eccd38be514594c36e8a9463106, type: 3}
       propertyPath: m_Name
       value: Dough
+      objectReference: {fileID: 0}
+    - target: {fileID: 9205927336375924964, guid: 690b7eccd38be514594c36e8a9463106, type: 3}
+      propertyPath: m_GravityScale
+      value: 3.3
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

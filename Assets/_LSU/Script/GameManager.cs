@@ -228,6 +228,11 @@ public class GameManager : MonoBehaviour
         return onFire;
     }
 
+    public void SetOnFire(float duration)
+    {
+        fireDamageDuration = duration;
+    }
+
     public void InitOnFire()
     {
         onFire = false;
