@@ -9,9 +9,9 @@ public class Ingredient : MonoBehaviour
     bool onMagnet = false;
     float attractTimer = 0.0f;
     float currentSpeed = 0.0f;
-    float baseSpeed = 6f;
-    float accelerationRate = 5f;
-    float maxSpeed = 20f;
+    float baseSpeed = 10f;
+    float accelerationRate = 16f;
+    float maxSpeed = 50f;
     private void Awake()
     {
         IngredientManager = GameObject.Find("GameManager").GetComponent<IngredientManager>();
