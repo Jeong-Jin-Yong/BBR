@@ -1,5 +1,6 @@
 ﻿using System.Collections;
-using Unity.Properties;
+using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public class CharacterInput : MonoBehaviour
@@ -7,9 +8,9 @@ public class CharacterInput : MonoBehaviour
     public GameManager gm;
 
     [SerializeField]
-    private float doughSkillDistance = 250f;
-    [SerializeField]
-    private float breadSkillDistance = 500f;
+    private int doughMaxSkillCount = 3;
+    private int doughCurSkillCount;
+
 
     [Header("Jump")]
     [SerializeField]
@@ -18,11 +19,13 @@ public class CharacterInput : MonoBehaviour
     private int jumpMaxCount = 2;
     private int jumpCount;
 
-    [Header("Skill Object")]
+    [Header("Skill")]
     [SerializeField]
-    public GameObject skillObject;
-
-    private Vector2 originScale;
+    public List<GameObject> skillObject;
+    [SerializeField]
+    private float doughSkillDistance = 400f;
+    [SerializeField]
+    private float breadSkillDistance = 300f;
 
     private Rigidbody2D rb;
 
@@ -33,7 +36,7 @@ public class CharacterInput : MonoBehaviour
     private void OnEnable()
     {
         rb = GetComponent<Rigidbody2D>();
-        originScale = transform.localScale;
+        doughCurSkillCount = 0;
         animator.SetBool("IsAttack", false);
         animator.SetBool("IsSlide", false);
     }
@@ -54,7 +57,7 @@ public class CharacterInput : MonoBehaviour
                 case -1:
                     return;
                 case 0:
-                    if (skillObject != null && !skillObject.activeSelf)
+                    if (skillObject != null && doughCurSkillCount < doughMaxSkillCount && !skillObject[0].activeSelf)
                     {
                         ActiveDoughSkill();
                         animator.SetBool("IsAttack", true);
@@ -67,7 +70,7 @@ public class CharacterInput : MonoBehaviour
                     }
                     break;
                 case 2:
-                    if (skillObject != null && !skillObject.activeSelf)
+                    if (skillObject != null && !skillObject.All(obj => obj.activeSelf))
                     {
                         ActiveBreadSkill();
                     }
@@ -123,20 +126,26 @@ public class CharacterInput : MonoBehaviour
 
     void ActiveDoughSkill()
     {
-        skillObject.SetActive(true);
+        skillObject[0].SetActive(true);
+        doughCurSkillCount++;
 
         var dir = (this.transform.right + this.transform.up).normalized * doughSkillDistance;
-        skillObject.GetComponent<Rigidbody2D>().AddForce((Vector2)dir);
-        StartCoroutine(ActiveSkillEnd(1, 1.8f));
+        skillObject[0].GetComponent<Rigidbody2D>().AddForce((Vector2)dir);
+        StartCoroutine(ActiveSkillEnd(1, 1.1f));
     }
 
     void ActiveBreadSkill()
     {
-        skillObject.SetActive(true);
-
-        var dir = this.transform.right * breadSkillDistance;
-        skillObject.GetComponent<Rigidbody2D>().AddForce((Vector2)dir);
-        StartCoroutine(ActiveSkillEnd(3, 2f));
+        var pos1 = Vector2.right * breadSkillDistance;
+        var pos2 = (Vector2.right * 15 + Vector2.up * 3).normalized * breadSkillDistance;
+        var pos3 = (Vector2.right * 2 + Vector2.up).normalized * breadSkillDistance;
+        Vector2[] allPos = {pos1, pos2, pos3};
+        for (int i = 0; i < allPos.Length; i++)
+        {
+            skillObject[i].gameObject.SetActive(true);
+            skillObject[i].GetComponent<Rigidbody2D>().AddForce(allPos[i]);
+        }
+        StartCoroutine(ActiveSkillEnd(3, 3f));
     }
 
     IEnumerator ActiveSkillEnd(int id, float waiting)
@@ -145,21 +154,22 @@ public class CharacterInput : MonoBehaviour
 
         if (id == 1)
         {
-
-            var allObjects = Physics2D.OverlapCircleAll(skillObject.transform.position, 2f);
+            var allObjects = Physics2D.OverlapCircleAll(skillObject[0].transform.position, 4f);
             foreach (var obj in allObjects)
             {
-                if (obj.gameObject.CompareTag("Ground")) break;
+                if (obj.gameObject.CompareTag("Ground") || obj.gameObject == this.gameObject) continue;
                 obj.gameObject.SetActive(false);
             }
-            skillObject.transform.localPosition = new Vector3(4.5f, 4f, 0f);
-            skillObject.SetActive(false);
+            skillObject[0].transform.localPosition = new Vector3(4.5f, 4f, 0f);
+            skillObject[0].SetActive(false);
         }
         else if (id == 3)
         {
-            skillObject.transform.localPosition = new Vector3(4.5f, 4f, 0f);
-            skillObject.SetActive(false);
-            // 플라잉 몬스터에서 충돌 감지
+            foreach (var obj in skillObject)
+            {
+                obj.transform.localPosition = new Vector3(4.5f, 4f, 0f);
+                obj.SetActive(false);
+            }
         }
     }
 
