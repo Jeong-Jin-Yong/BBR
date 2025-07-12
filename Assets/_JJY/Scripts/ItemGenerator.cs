@@ -13,7 +13,6 @@ public class ItemGenerator : MonoBehaviour
     [SerializeField]
     private float itemSpawnInterval = 3f;
 
-    private ItemData itemData;
 
     [Header("Stage 1 Item")]
     [SerializeField]
@@ -22,6 +21,10 @@ public class ItemGenerator : MonoBehaviour
     [Header("Stage 2 Item")]
     [SerializeField]
     private List<GameObject> stage2Items;
+
+    [Header("Stage 3 Item")]
+    [SerializeField]
+    private List<GameObject> stage3Items;
 
 
     private void OnEnable()
@@ -43,10 +46,17 @@ public class ItemGenerator : MonoBehaviour
                     var obj = Instantiate(stage1Items[Random.Range(0, stage1Items.Count)], spawnPos, Quaternion.identity);
                     break;
                 }
-                if (gm.stageID == 2 && IsValid(itemSpawnpoint[i].transform))
+                else if (gm.stageID == 2 && IsValid(itemSpawnpoint[i].transform))
                 {
                     var spawnPos = itemSpawnpoint[Random.Range(0, itemSpawnpoint.Count)].transform.position;
-                    var obj = Instantiate(stage1Items[Random.Range(0, stage1Items.Count)], spawnPos, Quaternion.identity);
+                    var obj = Instantiate(stage2Items[Random.Range(0, stage2Items.Count)], spawnPos, Quaternion.identity);
+                    itemSpawnInterval = 10f;
+                    break;
+                }
+                else if (gm.stageID == 3 && IsValid(itemSpawnpoint[i].transform))
+                {
+                    Instantiate(stage3Items[Random.Range(0, stage3Items.Count)]);
+                    itemSpawnInterval = 20f;
                     break;
                 }
             }
@@ -57,7 +67,7 @@ public class ItemGenerator : MonoBehaviour
 
     private bool IsValid(Transform itemSpawnpoint)
     {
-        var allObjects = Physics2D.OverlapBoxAll(itemSpawnpoint.position, new Vector2(2f, 2f), 0f);
+        var allObjects = Physics2D.OverlapBoxAll(itemSpawnpoint.position, new Vector2(4f, 2f), 0f);
         if (allObjects.Length > 1)
         {
             return false;

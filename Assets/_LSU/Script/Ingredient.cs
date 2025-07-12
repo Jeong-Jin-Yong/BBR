@@ -12,6 +12,7 @@ public class Ingredient : MonoBehaviour
     float baseSpeed = 10f;
     float accelerationRate = 16f;
     float maxSpeed = 50f;
+
     private void Awake()
     {
         IngredientManager = GameObject.Find("GameManager").GetComponent<IngredientManager>();

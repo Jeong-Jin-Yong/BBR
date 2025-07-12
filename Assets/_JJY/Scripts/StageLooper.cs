@@ -59,7 +59,7 @@ public class StageLooper : MonoBehaviour
                 stage.SetActive(true); // -2 13.3
                 if (stage.transform.position.x <= -16.4f)
                 {
-                    stage.transform.position = new Vector3(30.4f, 0f, 0f);
+                    stage.transform.position = new Vector3(28.4f, 0f, 0f);
                 }
             }
         }
