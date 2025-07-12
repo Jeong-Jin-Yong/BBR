@@ -21,5 +21,5 @@ MonoBehaviour:
     - {fileID: 48939352059295309, guid: 00a06519e8990ad419836fb759517ef9, type: 3}
     deadIngredients:
     - {fileID: 3994939525100016490, guid: be9a3fdc314cc7142b21fe9e68facc55, type: 3}
-    needCounts: 030000000300000003000000
+    needCounts: 030000000200000003000000
     deadCounts: 02000000

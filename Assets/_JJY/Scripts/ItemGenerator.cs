@@ -11,7 +11,17 @@ public class ItemGenerator : MonoBehaviour
 
     [Header("Item Generate Time")]
     [SerializeField]
-    private float itemSpawnInterval = 1f;
+    private float itemSpawnInterval = 5f;
+
+    private ItemData itemData;
+
+    [Header("Stage 1 Item")]
+    [SerializeField]
+    private List<GameObject> stage1Items;
+
+    [Header("Stage 2 Item")]
+    [SerializeField]
+    private List<GameObject> stage2Items;
 
 
     private void OnEnable()
@@ -27,10 +37,17 @@ public class ItemGenerator : MonoBehaviour
         {
             for (int i = 0; i < itemSpawnpoint.Count; i++)
             {
-                if (IsValid(itemSpawnpoint[i].transform))
+                if (gm.stageID == 1 && IsValid(itemSpawnpoint[i].transform))
                 {
-                    // 아이템 스폰
-                    Debug.Log("Item Spawned");
+                    var spawnPos = itemSpawnpoint[Random.Range(0, itemSpawnpoint.Count)].transform.position;
+                    var obj = Instantiate(stage1Items[Random.Range(0, stage1Items.Count)], spawnPos, Quaternion.identity);
+                    break;
+                }
+                if (gm.stageID == 2 && IsValid(itemSpawnpoint[i].transform))
+                {
+                    var spawnPos = itemSpawnpoint[Random.Range(0, itemSpawnpoint.Count)].transform.position;
+                    var obj = Instantiate(stage1Items[Random.Range(0, stage1Items.Count)], spawnPos, Quaternion.identity);
+                    break;
                 }
             }
 
@@ -40,7 +57,7 @@ public class ItemGenerator : MonoBehaviour
 
     private bool IsValid(Transform itemSpawnpoint)
     {
-        var allObjects = Physics2D.OverlapBoxAll(itemSpawnpoint.position, new Vector2(1f, 1f), 0f);
+        var allObjects = Physics2D.OverlapBoxAll(itemSpawnpoint.position, new Vector2(2f, 2f), 0f);
         if (allObjects.Length > 1)
         {
             return false;

@@ -1,0 +1,228 @@
+fileFormatVersion: 2
+guid: 9c31a7cb94550d842996ef0a3a9f2127
+TextureImporter:
+  internalIDToNameTable: []
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 0
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 0
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 400
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Android
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: WindowsStoreApps
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: Coffee_0
+      rect:
+        serializedVersion: 2
+        x: 172
+        y: 511
+        width: 668
+        height: 583
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8b9d149beb057d34aa5dda7b91cfc8c3
+      internalID: -1830591065
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: 56d8c9e466342a444ac5f8b7dc606998
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable:
+      Coffee_0: -1830591065
+      Coffee_1: -670487538
+      Coffee_10: -314573088
+      Coffee_11: -1039033932
+      Coffee_12: -948999153
+      Coffee_13: 1011379084
+      Coffee_14: -1807845618
+      Coffee_15: -1005359280
+      Coffee_16: -1601426021
+      Coffee_17: -1611859934
+      Coffee_18: 284337703
+      Coffee_19: -1049487103
+      Coffee_2: 445295943
+      Coffee_20: -639546545
+      Coffee_21: 31302039
+      Coffee_22: 1126928528
+      Coffee_23: 1027571177
+      Coffee_24: 1385976318
+      Coffee_25: -1491564050
+      Coffee_26: 813397065
+      Coffee_27: 309075878
+      Coffee_28: -1899795405
+      Coffee_29: -79116317
+      Coffee_3: -1920971662
+      Coffee_30: 231824877
+      Coffee_31: 433927337
+      Coffee_32: -798214594
+      Coffee_33: -235066821
+      Coffee_34: -1871380123
+      Coffee_35: -231492095
+      Coffee_36: -1361793509
+      Coffee_37: -854193885
+      Coffee_38: 871949295
+      Coffee_39: -1262988008
+      Coffee_4: 65978566
+      Coffee_40: -529380048
+      Coffee_41: 360085461
+      Coffee_42: -11829132
+      Coffee_43: -1135292763
+      Coffee_44: -1968900028
+      Coffee_45: -1964342301
+      Coffee_46: 480816674
+      Coffee_47: 2071992452
+      Coffee_48: 968694904
+      Coffee_49: -1784382275
+      Coffee_5: 1950519296
+      Coffee_50: -741941905
+      Coffee_51: -502408618
+      Coffee_52: 1922909751
+      Coffee_53: -1117618622
+      Coffee_54: 267524416
+      Coffee_55: 1315636658
+      Coffee_56: -1957148119
+      Coffee_57: -2102895486
+      Coffee_58: -1597049992
+      Coffee_59: -1091947340
+      Coffee_6: 1091397950
+      Coffee_60: 1949746121
+      Coffee_61: 1675187241
+      Coffee_62: 1686869369
+      Coffee_7: -1879972372
+      Coffee_8: 760169698
+      Coffee_9: 1902555585
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

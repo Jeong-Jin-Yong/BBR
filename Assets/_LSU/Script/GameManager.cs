@@ -1,5 +1,7 @@
 using UnityEngine;
 using UnityEngine.UI;
+using System.Collections.Generic;
+using System.ComponentModel;
 
 public class GameManager : MonoBehaviour
 {
@@ -35,6 +37,11 @@ public class GameManager : MonoBehaviour
     [SerializeField] float fireDamage = 0f; //불 데미지
     [SerializeField] float fireDamageDuration = 5f; //불 데미지 지속시간
 
+    [Header("Baking Bread")]
+    [SerializeField]
+    private List<ItemData> breadList;
+    private ItemData curBread;
+
 
     private void Awake()
     {
@@ -44,6 +51,12 @@ public class GameManager : MonoBehaviour
         maxHp = 100;
         currentHp = 100;
         hpBar.fillAmount = 1;
+    }
+
+    private void OnEnable()
+    {
+        curBread = breadList[Random.Range(0, 3)];
+        Debug.Log($"Misson: {curBread}");
     }
 
     private void Update()
@@ -232,5 +245,10 @@ public class GameManager : MonoBehaviour
 
         isGameOver = true;
         gameEndingScript.EndGame();
+    }
+
+    public ItemData GetCurBread()
+    {
+        return curBread;
     }
 }

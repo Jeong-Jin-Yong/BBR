@@ -14,12 +14,22 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ingredients:
     name: SausageBread
-    spawnIngredients: []
+    spawnIngredients:
+    - {fileID: 0}
+    - {fileID: 0}
+    - {fileID: 0}
+    - {fileID: 0}
+    - {fileID: 0}
+    - {fileID: 0}
+    - {fileID: 0}
     needIngredients:
     - {fileID: 8888397580789869145, guid: 70fddf740d6ca2f42a69ddee3f27b24e, type: 3}
     - {fileID: 2329535851884867064, guid: 3af88c5bc1e55144eb65aeb9c2fb720e, type: 3}
     - {fileID: 48939352059295309, guid: 00a06519e8990ad419836fb759517ef9, type: 3}
+    - {fileID: 48939352059295309, guid: 00a06519e8990ad419836fb759517ef9, type: 3}
+    - {fileID: 48939352059295309, guid: 00a06519e8990ad419836fb759517ef9, type: 3}
     deadIngredients:
+    - {fileID: 3994939525100016490, guid: be9a3fdc314cc7142b21fe9e68facc55, type: 3}
     - {fileID: 3994939525100016490, guid: be9a3fdc314cc7142b21fe9e68facc55, type: 3}
     needCounts: 030000000300000003000000
     deadCounts: 02000000
