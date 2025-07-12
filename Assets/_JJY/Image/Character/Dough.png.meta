@@ -1,157 +1,7 @@
 fileFormatVersion: 2
-guid: 5b25bc58053c3f14a8934e587045e807
+guid: 40b7b0f424bff7841b46d59f17b9a5fb
 TextureImporter:
-  internalIDToNameTable:
-  - first:
-      213: -6110981521182986806
-    second: Dough_0
-  - first:
-      213: -8347890589976020122
-    second: Dough_1
-  - first:
-      213: 7094566247004505057
-    second: Dough_2
-  - first:
-      213: 6340002725714454522
-    second: Dough_3
-  - first:
-      213: 285071492567117528
-    second: Dough_4
-  - first:
-      213: 2268930077167731166
-    second: Dough_5
-  - first:
-      213: 9217369451213345588
-    second: Dough_6
-  - first:
-      213: -135071354233007656
-    second: Dough_7
-  - first:
-      213: -1777821567839956536
-    second: Dough_8
-  - first:
-      213: -2643487412269483898
-    second: Dough_9
-  - first:
-      213: 7523730530271665601
-    second: Dough_10
-  - first:
-      213: 4099129455386850218
-    second: Dough_11
-  - first:
-      213: 5011162733897434956
-    second: Dough_12
-  - first:
-      213: -4345463660928875028
-    second: Dough_13
-  - first:
-      213: 7863782579072144454
-    second: Dough_14
-  - first:
-      213: 2089914594403059297
-    second: Dough_15
-  - first:
-      213: -8044389986855312162
-    second: Dough_16
-  - first:
-      213: 7140733079866346163
-    second: Dough_17
-  - first:
-      213: -8826633265994610114
-    second: Dough_18
-  - first:
-      213: -8382755499045817913
-    second: Dough_19
-  - first:
-      213: -4518454339623361808
-    second: Dough_20
-  - first:
-      213: -764875619172835321
-    second: Dough_21
-  - first:
-      213: 3714328569155637362
-    second: Dough_22
-  - first:
-      213: 7899783427764383999
-    second: Dough_23
-  - first:
-      213: 5121364968541649520
-    second: Dough_24
-  - first:
-      213: 5334836339990945500
-    second: Dough_25
-  - first:
-      213: 7038568681510495968
-    second: Dough_26
-  - first:
-      213: 4264563717941247574
-    second: Dough_27
-  - first:
-      213: 8352502075296537829
-    second: Dough_28
-  - first:
-      213: 7317859499920153784
-    second: Dough_29
-  - first:
-      213: -5496919489610890000
-    second: Dough_30
-  - first:
-      213: 2510816437650475819
-    second: Dough_31
-  - first:
-      213: 7594208184557451050
-    second: Dough_32
-  - first:
-      213: 1246146779713651362
-    second: Dough_33
-  - first:
-      213: 663697718970070670
-    second: Dough_34
-  - first:
-      213: 311550633985445810
-    second: Dough_35
-  - first:
-      213: -1717397752580642268
-    second: Dough_36
-  - first:
-      213: 3179129753967059122
-    second: Dough_37
-  - first:
-      213: 4245468279855723730
-    second: Dough_38
-  - first:
-      213: -2140394188478516829
-    second: Dough_39
-  - first:
-      213: 920646884720953946
-    second: Dough_40
-  - first:
-      213: 6004302425819644604
-    second: Dough_41
-  - first:
-      213: -6706915464434350362
-    second: Dough_42
-  - first:
-      213: 6621347273341746184
-    second: Dough_43
-  - first:
-      213: -6372429568188223437
-    second: Dough_44
-  - first:
-      213: -2253467146238408038
-    second: Dough_45
-  - first:
-      213: 8056754699245436667
-    second: Dough_46
-  - first:
-      213: -1490180939832245803
-    second: Dough_47
-  - first:
-      213: 8894196932195444117
-    second: Dough_48
-  - first:
-      213: 1085885949115358483
-    second: Dough_49
+  internalIDToNameTable: []
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -189,7 +39,7 @@ TextureImporter:
     mipBias: 0
     wrapU: 1
     wrapV: 1
-    wrapW: 1
+    wrapW: 0
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
@@ -273,13 +123,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Dough_0
+      name: Final Dough_0
       rect:
         serializedVersion: 2
-        x: 107
-        y: 388
-        width: 771
-        height: 758
+        x: 76
+        y: 425
+        width: 828
+        height: 724
       alignment: 7
       pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -288,8 +138,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 32e27a59f89c9ff43b00bb403d43b63b
-      internalID: -259190900
+      spriteID: f0bedd65bfc7e9f45842c7e83c650ec8
+      internalID: 369136506
       vertices: []
       indices: 
       edges: []
@@ -298,7 +148,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 0f823882c325e9b4c87ef3f14125ee79
+    spriteID: cd2d17d59628d0047822733fd892841c
     internalID: 0
     vertices: []
     indices: 
@@ -308,7 +158,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      Dough_0: -259190900
+      Final Dough_0: 369136506
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
