@@ -146,7 +146,7 @@ public class SegmentGenerator : MonoBehaviour
         GameObject segment = SegmentPool.Instance.GetSpecificSegment(startPlatformIndex);
         if (segment != null)
         {
-            segment.transform.position = new Vector3(nextSpawnPosition.x, -5f, nextSpawnPosition.z);
+            segment.transform.position = new Vector3(nextSpawnPosition.x, -5.5f, nextSpawnPosition.z);
             activeSegments.Enqueue(segment);
             nextSpawnPosition += Vector3.right * segmentWidth;
             lastSegmentX = nextSpawnPosition.x;
@@ -167,7 +167,7 @@ public class SegmentGenerator : MonoBehaviour
         {
             // 가장 오른쪽 플랫폼의 위치를 기준으로 새로운 위치 계산
             float rightmostX = GetRightmostPlatformX();
-            Vector3 spawnPosition = new Vector3(rightmostX + segmentWidth, -5f, nextSpawnPosition.z);
+            Vector3 spawnPosition = new Vector3(rightmostX + segmentWidth, -5.5f, nextSpawnPosition.z);
 
             segment.transform.position = spawnPosition;
             activeSegments.Enqueue(segment);

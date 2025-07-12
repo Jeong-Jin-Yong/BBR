@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: f916d644aaf44eb4da901a05982bc3d2
+guid: 3c82ef54dbef08c43a2dc03eeeeb0a2b
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -48,7 +48,7 @@ TextureImporter:
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 120
+  spritePixelsToUnits: 100
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -69,7 +69,7 @@ TextureImporter:
   platformSettings:
   - serializedVersion: 4
     buildTarget: DefaultTexturePlatform
-    maxTextureSize: 1024
+    maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
     textureCompression: 1
@@ -97,23 +97,23 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Obstacle (5)_0
+      name: Sausage_2_1_0
       rect:
         serializedVersion: 2
-        x: 330
-        y: 265
-        width: 362
-        height: 1039
-      alignment: 2
-      pivot: {x: 0.5, y: 1}
+        x: 86
+        y: 130
+        width: 245
+        height: 347
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: c927e1700b3b129498b7dbd5e9a103a5
-      internalID: 1966471423
+      spriteID: 5b25411fa14c39f49a272456e2c252b8
+      internalID: 876649696
       vertices: []
       indices: 
       edges: []
@@ -122,7 +122,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 5e97eb03825dee720800000000000000
+    spriteID: 976f7b7516d3ab543831e21d0eac2437
     internalID: 0
     vertices: []
     indices: 
@@ -132,7 +132,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      Obstacle (5)_0: 1966471423
+      Sausage_2_1_0: 876649696
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

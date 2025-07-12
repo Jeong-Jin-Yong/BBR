@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 3ce912f8b7504bc41bbaae3cb8c4b3a9
+guid: 55d5b306df7884c4e8db83d1c857e7a8
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -48,7 +48,7 @@ TextureImporter:
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 400
+  spritePixelsToUnits: 100
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -69,7 +69,7 @@ TextureImporter:
   platformSettings:
   - serializedVersion: 4
     buildTarget: DefaultTexturePlatform
-    maxTextureSize: 256
+    maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
     textureCompression: 1
@@ -97,13 +97,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Obstacle (3)_0
+      name: WhiteBread_2_1_0
       rect:
         serializedVersion: 2
-        x: 102
-        y: 362
-        width: 826
-        height: 775
+        x: 58
+        y: 135
+        width: 294
+        height: 332
       alignment: 7
       pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -112,8 +112,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 207a0f0b5d89e384e97e1cada6345a66
-      internalID: -1272932333
+      spriteID: 1ab0e0753e2124942a8ea432b1535970
+      internalID: -1702885025
       vertices: []
       indices: 
       edges: []
@@ -122,7 +122,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 5e97eb03825dee720800000000000000
+    spriteID: becc8fc85b69c674e9714db38d33fb4f
     internalID: 0
     vertices: []
     indices: 
@@ -132,7 +132,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      Obstacle (3)_0: -1272932333
+      WhiteBread_2_1_0: -1702885025
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

@@ -15,7 +15,7 @@ public class IngredientManager : MonoBehaviour
     int[] deadCollectedCounts;
 
     [SerializeField] Transform currentIngredientGroup;
-    [SerializeField] Transform[] groups;
+    public Transform[] groups;
 
     private void Start()
     {

@@ -194,9 +194,8 @@ public class GameManager : MonoBehaviour
     {
         if(stageID == 1)
         {
-            //재료 잃기?
-            //재료 배열 혹은 리스트에서 랜덤으로 해당되는 재료의 갯수를 차감
-            //Random.Range(0, );
+            doughTimer -= damage;
+            doughTimerBar.fillAmount = doughTimer / doughTime;
         }
 
         if (stageID != 1)

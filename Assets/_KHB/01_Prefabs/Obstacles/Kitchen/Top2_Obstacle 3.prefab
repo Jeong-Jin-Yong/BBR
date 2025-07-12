@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 3798263882266535444}
   m_Layer: 0
   m_Name: Top2_Obstacle 3
-  m_TagString: Untagged
+  m_TagString: Obstacle
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -122,15 +122,15 @@ BoxCollider2D:
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
-  m_Offset: {x: 0.007695377, y: -1.7312511}
+  m_Offset: {x: 0.004644692, y: -1.5909216}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 1}
-    oldSize: {x: 3.0181396, y: 8.658334}
+    oldSize: {x: 1.2066667, y: 3.4633334}
     newSize: {x: 1, y: 1}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  m_Size: {x: 1.0615627, y: 3.4625022}
+  m_Size: {x: 0.8602203, y: 3.1818433}
   m_EdgeRadius: 0

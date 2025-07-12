@@ -9,6 +9,6 @@ public class ObjectManager : MonoBehaviour
 
     private void Update()
     {
-        transform.Translate(Vector3.left * 5f * Time.deltaTime);
+        transform.Translate(Vector3.left * 5.4f * Time.deltaTime);
     }
 }

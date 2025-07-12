@@ -9,8 +9,8 @@ EditorBuildSettings:
     path: Assets/_LSU/Scenes/Title_LSU.unity
     guid: 1bf759ed6996e734bbfc726b1a5bd924
   - enabled: 1
-    path: Assets/_Clean/Scene/GameScene.unity
-    guid: 43d3f2a250b60e04abde2cdf66f95cca
+    path: Assets/_Clean/Scene/GameScene__.unity
+    guid: f032a3abc7391404695a140289a61bea
   m_configObjects:
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 052faaac586de48259a63d0c4782560b, type: 3}
   m_UseUCBPForAssetBundles: 0

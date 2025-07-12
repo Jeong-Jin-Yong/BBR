@@ -26,12 +26,16 @@ public class CharacterInput : MonoBehaviour
 
     private Rigidbody2D rb;
 
+    [SerializeField]private Animator animator;
+
     #region Unity Life Style
 
     private void OnEnable()
     {
         rb = GetComponent<Rigidbody2D>();
         originScale = transform.localScale;
+        animator.SetBool("IsAttack", false);
+        animator.SetBool("IsSlide", false);
     }
 
     private void OnDisable()
@@ -53,6 +57,7 @@ public class CharacterInput : MonoBehaviour
                     if (skillObject != null && !skillObject.activeSelf)
                     {
                         ActiveDoughSkill();
+                        animator.SetBool("IsAttack", true);
                     }
                     break;
                 case 1:
@@ -71,19 +76,36 @@ public class CharacterInput : MonoBehaviour
                     break;
             }
         }
+        else if(Input.GetKeyUp(KeyCode.Space))
+        {
+            switch ((int)CharacterInfo.Instance.GetPlayer())
+            {
+                case -1:
+                    return;
+                case 0:
+                        animator.SetBool("IsAttack", false);
+                    break;
+                case 1:
+                    break;
+                case 2:
+                    break;
+                default:
+                    break;
+            }
+        }
 
-        if (Input.GetMouseButtonDown(0))
+        if (Input.GetMouseButtonDown(0) && !animator.GetBool("IsSlide"))
         {
             Jump();
         }
         
         if (Input.GetMouseButtonDown(1))
         {
-            this.transform.localScale = originScale - new Vector2(0, 0.1f);
+            animator.SetBool("IsSlide", true);
         }
         else if (Input.GetMouseButtonUp(1))
         {
-            this.transform.localScale = originScale;
+            animator.SetBool("IsSlide", false);
         }
     }
 

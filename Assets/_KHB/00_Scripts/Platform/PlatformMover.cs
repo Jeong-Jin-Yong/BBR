@@ -5,7 +5,7 @@ public class PlatformMover : MonoBehaviour
     private float disableX = -25f;
 
     [SerializeField]
-    private float moveSpeed = 4.0f; // 플랫폼 이동 속도
+    private float moveSpeed = 12.0f; // 플랫폼 이동 속도
     private bool isMoving = true;
 
     private void Update()
@@ -58,10 +58,10 @@ public class PlatformMover : MonoBehaviour
         isMoving = false;
     }
 
-    public void SetMoveSpeed(float speed)
-    {
-        moveSpeed = speed;
-    }
+    //public void SetMoveSpeed(float speed)
+    //{
+    //    moveSpeed = speed;
+    //}
 
     public void ResetPosition(Vector3 position)
     {
