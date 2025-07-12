@@ -39,12 +39,6 @@ public class GameManager : MonoBehaviour
     [SerializeField] float fireDamage = 0f; //불 데미지
     [SerializeField] float fireDamageDuration = 5f; //불 데미지 지속시간
 
-    [Header("Baking Bread")]
-    [SerializeField]
-    private List<ItemData> breadList;
-    private ItemData curBread;
-
-
     private void Awake()
     {
         gameEndingScript = GetComponent<GameEnding>();
@@ -70,8 +64,6 @@ public class GameManager : MonoBehaviour
             DoughUpdate();
 
         ProgressUpdate();
-
-        if (Input.GetKeyDown(KeyCode.A)) CharacterInfo.Instance.ActivePlayer();
 
 
         //장애물 데미지 테스트용
@@ -251,10 +243,5 @@ public class GameManager : MonoBehaviour
 
         isGameOver = true;
         gameEndingScript.EndGame();
-    }
-
-    public ItemData GetCurBread()
-    {
-        return curBread;
     }
 }

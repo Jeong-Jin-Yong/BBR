@@ -50,6 +50,7 @@ public class CharacterInput : MonoBehaviour
 
     private void Update()
     {
+        // Use Skill
         if (Input.GetKeyDown(KeyCode.Space))
         {
             switch ((int)CharacterInfo.Instance.GetPlayer())
@@ -86,7 +87,7 @@ public class CharacterInput : MonoBehaviour
                 case -1:
                     return;
                 case 0:
-                        animator.SetBool("IsAttack", false);
+                    animator.SetBool("IsAttack", false);
                     break;
                 case 1:
                     break;
@@ -97,11 +98,13 @@ public class CharacterInput : MonoBehaviour
             }
         }
 
+        // Jump
         if (Input.GetMouseButtonDown(0) && !animator.GetBool("IsSlide"))
         {
             Jump();
         }
         
+        // Slide
         if (Input.GetMouseButtonDown(1))
         {
             animator.SetBool("IsSlide", true);
