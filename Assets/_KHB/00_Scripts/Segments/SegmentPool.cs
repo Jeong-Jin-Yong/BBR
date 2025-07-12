@@ -159,4 +159,44 @@ public class SegmentPool : MonoBehaviour
         }
         return 0;
     }
+
+    public void ChangeStagePrefabs(GameObject[] newPrefabs)
+    {
+        if (newPrefabs == null || newPrefabs.Length == 0) { return; }
+
+        ReturnAllSegments();
+
+        foreach (var pool in typedPools.Values)
+        {
+            while (pool.Count > 0)
+            {
+                GameObject seg = pool.Dequeue();
+                if (seg != null)
+                {
+                    Destroy(seg);
+                }
+            } 
+        }
+        while (segmentPool.Count > 0)
+        {
+            GameObject seg = segmentPool.Dequeue();
+            if (seg != null)
+            {
+                Destroy(seg);
+            }
+        }
+
+        segmentPool.Clear();
+        typedPools.Clear();
+        activeSegments.Clear();
+
+        segmentPrefabs = newPrefabs;
+
+        InitializePool();
+    }
+
+    public GameObject[] GetCurrentPrefabs()
+    {
+        return segmentPrefabs;
+    }
 }

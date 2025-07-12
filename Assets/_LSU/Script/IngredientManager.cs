@@ -137,4 +137,9 @@ public class IngredientManager : MonoBehaviour
         Debug.Log($"⚠️ {cleanedName} is not needed.");
         return false; // ❌ 필요 없는 재료
     }
+
+    public ItemData GetTarget()
+    {
+        return target;
+    }
 }

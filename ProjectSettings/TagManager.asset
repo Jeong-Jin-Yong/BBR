@@ -8,6 +8,7 @@ TagManager:
   - Obstacle
   - Fire
   - Magnet
+  - Ingredient
   layers:
   - Default
   - TransparentFX
@@ -15,7 +16,7 @@ TagManager:
   - 
   - Water
   - UI
-  - 
+  - Col
   - 
   - 
   - 

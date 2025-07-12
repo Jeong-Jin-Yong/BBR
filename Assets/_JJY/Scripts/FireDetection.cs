@@ -15,6 +15,7 @@ public class FireDetection : MonoBehaviour
         if (collision.gameObject.CompareTag("Player"))
         {
             gm.SetOnFire(5f);
+            Destroy(gameObject);
         }
     }
 }

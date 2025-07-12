@@ -44,6 +44,15 @@ public class GameManager : MonoBehaviour
     private List<ItemData> breadList;
     private ItemData curBread;
 
+    [Header("스테이지 플랫폼 설정")]
+    [SerializeField] GameObject[] stage1Prefabs;
+    [SerializeField] GameObject[] stage2Prefabs;
+    [SerializeField] GameObject[] stage3Prefabs;
+
+    [Header("스테이지 패턴 설정")]
+    [SerializeField] int[] stage1Patterns = { 0, 1, 2, 1 };
+    [SerializeField] int[] stage2Patterns = { 0, 2, 1, 2 };
+    [SerializeField] int[] stage3Patterns = { 0, 1, 2, 1 };
 
     private void Awake()
     {
@@ -65,8 +74,8 @@ public class GameManager : MonoBehaviour
     {
         if (isGameOver)
             return;
-        
-        if(stageID == 1)
+
+        if (stageID == 1)
             DoughUpdate();
 
         ProgressUpdate();
@@ -110,7 +119,7 @@ public class GameManager : MonoBehaviour
 
         if (doughTimerBar.fillAmount <= 0.001f)
         {
-            if(!hasDough1 || !hasDough2 || !hasDough3)
+            if (!hasDough1 || !hasDough2 || !hasDough3)
             {
                 isGameOver = true;
                 gameEndingScript.EndGame();
@@ -140,6 +149,7 @@ public class GameManager : MonoBehaviour
             {
                 isStage1 = true;
                 previousStageID = stageID;
+                ChangeStage(1);
             }
         }
         else if (progress <= 0.66f)
@@ -151,6 +161,7 @@ public class GameManager : MonoBehaviour
                 animator.SetInteger("StageID", 2);
                 CharacterInfo.Instance.ActivePlayer();
                 previousStageID = stageID;
+                ChangeStage(2);
             }
         }
         else if (progress < 0.99f)
@@ -162,6 +173,7 @@ public class GameManager : MonoBehaviour
                 animator.SetInteger("StageID", 3);
                 CharacterInfo.Instance.ActivePlayer();
                 previousStageID = stageID;
+                ChangeStage(3);
             }
         }
         else if (progress <= 0.99f)
@@ -175,6 +187,44 @@ public class GameManager : MonoBehaviour
         }
     }
 
+    private void ChangeStage(int newStageID)
+    {
+        GameObject[] newPrefabs = null;
+        int[] newPattern = null;
+
+        switch (newStageID)
+        {
+            case 1:
+                newPrefabs = stage1Prefabs;
+                newPattern = stage1Patterns;
+                break;
+            case 2:
+                newPrefabs = stage2Prefabs;
+                newPattern = stage2Patterns;
+                break;
+            case 3:
+                newPrefabs = stage3Prefabs;
+                newPattern = stage3Patterns;
+                break;
+            default:
+                return;
+        }
+
+        if (newPrefabs != null && newPrefabs.Length > 0)
+        {
+            SegmentPool.Instance.ChangeStagePrefabs(newPrefabs);
+
+            SegmentGenerator.Instance.ResetGenerator();
+
+            if (newPattern != null && newPattern.Length > 0)
+            {
+                SegmentGenerator.Instance.SetPlatformPattern(newPattern);
+            }
+        }
+
+        Debug.Log("Change to Stage" + newStageID);
+    }
+
     //불 데미지
     private void FireDamage()
     {
@@ -183,7 +233,7 @@ public class GameManager : MonoBehaviour
         fireDamageDuration -= Time.deltaTime;
 
         //지속시간 종료
-        if(fireDamageDuration <= 0)
+        if (fireDamageDuration <= 0)
         {
             InitOnFire();
         }
@@ -192,7 +242,7 @@ public class GameManager : MonoBehaviour
     //체력 감소 -> 플레이어  OnTriggerEnter에서 호출
     public void PlayerHpDecrease(float damage, string type)
     {
-        if(stageID == 1)
+        if (stageID == 1)
         {
             doughTimer -= damage;
             doughTimerBar.fillAmount = doughTimer / doughTime;
@@ -212,7 +262,7 @@ public class GameManager : MonoBehaviour
                 fireDamageDuration = 5.0f;
             }
         }
-        
+
     }
 
     //플레이어가 낙하했을 경우에 바로 게임오버.
@@ -253,8 +303,4 @@ public class GameManager : MonoBehaviour
         gameEndingScript.EndGame();
     }
 
-    public ItemData GetCurBread()
-    {
-        return curBread;
-    }
 }
