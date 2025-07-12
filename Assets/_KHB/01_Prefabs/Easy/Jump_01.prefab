@@ -78,6 +78,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: eefb5eb7beb70ba4c8095264770e53fc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  disableX: -10
 --- !u!1 &2894030826474244596
 GameObject:
   m_ObjectHideFlags: 0
@@ -119,10 +120,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 5996564073898433317}
     m_Modifications:
-    - target: {fileID: 42244510438959926, guid: 509894fcd0ee343409721a3ef85e58cf, type: 3}
-      propertyPath: m_IsTrigger
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 1587491758936424291, guid: 509894fcd0ee343409721a3ef85e58cf, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -185,10 +182,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 2312581778839981336}
     m_Modifications:
-    - target: {fileID: -8631188386410060621, guid: ea8f410e5299e654bad07cef127623c0, type: 3}
-      propertyPath: m_IsTrigger
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 2263533940348625700, guid: ea8f410e5299e654bad07cef127623c0, type: 3}
       propertyPath: m_Name
       value: Platform1_Obstacle
@@ -251,10 +244,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 2312581778839981336}
     m_Modifications:
-    - target: {fileID: -8631188386410060621, guid: ea8f410e5299e654bad07cef127623c0, type: 3}
-      propertyPath: m_IsTrigger
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 2263533940348625700, guid: ea8f410e5299e654bad07cef127623c0, type: 3}
       propertyPath: m_Name
       value: Platform1_Obstacle (1)

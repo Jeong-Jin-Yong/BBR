@@ -1,73 +1,140 @@
-﻿using UnityEngine;
+﻿using System.Collections.Generic;
+using UnityEngine;
+using UnityEngine.UI;
 
 public class IngredientManager : MonoBehaviour
 {
     public GameManager gameManager;
 
     public ItemData[] itemDatas;
-    ItemData target;
+    [SerializeField] ItemData target;
 
-    // 수집된 재료 개수를 추적하는 배열
+    private List<Text> ingredientTexts = new List<Text>();
+
     int[] collectedCounts;
     int[] deadCollectedCounts;
 
+    [SerializeField] Transform currentIngredientGroup;
+    [SerializeField] Transform[] groups;
+
     private void Start()
     {
-        target = itemDatas[Random.Range(0, itemDatas.Length)];
+        int ran = Random.Range(0, itemDatas.Length);
+        target = itemDatas[ran];
+        currentIngredientGroup = groups[ran];
+        currentIngredientGroup.gameObject.SetActive(true);
+
         collectedCounts = new int[target.ingredients.needIngredients.Length];
         deadCollectedCounts = new int[target.ingredients.deadIngredients.Length];
+
+        MapTextUI();
+        UpdateIngredientUI();
+    }
+
+    private void MapTextUI()
+    {
+        ingredientTexts.Clear();
+
+        for (int i = 0; i < target.ingredients.needIngredients.Length; i++)
+        {
+            string ingredientName = target.ingredients.needIngredients[i].name;
+
+            Transform ingredientObj = currentIngredientGroup.Find(ingredientName);
+            if (ingredientObj != null)
+            {
+                Transform textObj = ingredientObj.Find("Text");
+                if (textObj != null)
+                {
+                    Text txt = textObj.GetComponent<Text>();
+                    if (txt != null)
+                    {
+                        ingredientTexts.Add(txt);
+                    }
+                    else
+                    {
+                        Debug.LogWarning($"⚠️ Text 컴포넌트가 {ingredientName}에 존재하지 않습니다.");
+                    }
+                }
+                else
+                {
+                    Debug.LogWarning($"⚠️ '{ingredientName}' 오브젝트에 'Text' 자식이 없습니다.");
+                }
+            }
+            else
+            {
+                Debug.LogWarning($"⚠️ 그룹에 '{ingredientName}' 오브젝트가 존재하지 않습니다.");
+            }
+        }
+
+        // 배열 길이와 텍스트 개수가 일치하지 않으면 경고
+        if (ingredientTexts.Count != collectedCounts.Length)
+        {
+            Debug.LogError("❌ UI 텍스트 수와 필요 재료 수가 일치하지 않습니다.");
+        }
+    }
+
+    private void UpdateIngredientUI()
+    {
+        for (int i = 0; i < ingredientTexts.Count; i++)
+        {
+            int current = collectedCounts[i];
+            int max = target.ingredients.needCounts[i];
+            ingredientTexts[i].text = $"{current} / {max}";
+        }
     }
 
     public void IngredientCheck(GameObject obj)
     {
         var ingredients = target.ingredients;
+        string cleanedName = obj.name.Replace("(Clone)", "").Trim();
 
-        // 필요한 재료 검사
         for (int i = 0; i < ingredients.needIngredients.Length; i++)
         {
-            if (obj.name == ingredients.needIngredients[i].name)
+            if (cleanedName == ingredients.needIngredients[i].name)
             {
                 collectedCounts[i]++;
-                Debug.Log($"Collected {ingredients.needIngredients[i].name}: {collectedCounts[i]}/{ingredients.needCounts[i]}");
+                Debug.Log($"✅ Collected {cleanedName}: {collectedCounts[i]}/{ingredients.needCounts[i]}");
 
                 if (collectedCounts[i] >= ingredients.needCounts[i])
                 {
-                    Debug.Log($"{ingredients.needIngredients[i].name} is fully collected!");
+                    Debug.Log($"{cleanedName} is fully collected!");
 
                     switch (i)
                     {
                         case 0: gameManager.hasDough1 = true; break;
                         case 1: gameManager.hasDough2 = true; break;
                         case 2: gameManager.hasDough3 = true; break;
+                        case 3: gameManager.hasDough4 = true; break;
+                        case 4: gameManager.hasDough5 = true; break;
                         default: Debug.LogWarning("No matching hasDough variable for index " + i); break;
                     }
                 }
 
+                UpdateIngredientUI();
                 return;
             }
         }
 
-        // ❗️죽은 재료 검사
-        for (int i = 0; i < ingredients.deadIngredients.Length; i++)
+        if (gameManager.stageID == 1)
         {
-            if (obj.name == ingredients.deadIngredients[i].name)
+            for (int i = 0; i < ingredients.deadIngredients.Length; i++)
             {
-                deadCollectedCounts[i]++;
-                Debug.LogWarning($"❌ Wrong ingredient eaten: {ingredients.deadIngredients[i].name} - {deadCollectedCounts[i]}/{ingredients.deadCounts[i]}");
-
-                // 누적이 기준 이상이면 게임오버
-                if (deadCollectedCounts[i] >= ingredients.deadCounts[i])
+                if (cleanedName == ingredients.deadIngredients[i].name)
                 {
-                    Debug.LogError($"{ingredients.deadIngredients[i].name} was collected too much! Game Over.");
-                    gameManager.GameOver(); // GameManager에서 게임 종료 처리
-                }
+                    deadCollectedCounts[i]++;
+                    Debug.LogWarning($"❌ Wrong ingredient: {cleanedName} - {deadCollectedCounts[i]}/{ingredients.deadCounts[i]}");
 
-                return;
+                    if (deadCollectedCounts[i] >= ingredients.deadCounts[i])
+                    {
+                        Debug.LogError($"{cleanedName} collected too much! Game Over.");
+                        gameManager.GameOver();
+                    }
+
+                    return;
+                }
             }
         }
 
-        Debug.Log("This item is not needed.");
+        Debug.Log($"⚠️ {cleanedName} is not part of the current recipe.");
     }
-
-
 }

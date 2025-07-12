@@ -119,7 +119,10 @@ PrefabInstance:
       value: Doublejump_02
       objectReference: {fileID: 0}
     m_RemovedComponents: []
-    m_RemovedGameObjects: []
+    m_RemovedGameObjects:
+    - {fileID: 7314228555534342943, guid: ec2b0a30a61d25b4095eaaacf4ec6cb1, type: 3}
+    - {fileID: 7877255941430483584, guid: ec2b0a30a61d25b4095eaaacf4ec6cb1, type: 3}
+    - {fileID: 1719341371309425103, guid: ec2b0a30a61d25b4095eaaacf4ec6cb1, type: 3}
     m_AddedGameObjects:
     - targetCorrespondingSourceObject: {fileID: 6185755035126734419, guid: ec2b0a30a61d25b4095eaaacf4ec6cb1, type: 3}
       insertIndex: -1

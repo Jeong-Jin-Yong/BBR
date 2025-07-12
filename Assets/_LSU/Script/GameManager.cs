@@ -1,5 +1,7 @@
 using UnityEngine;
 using UnityEngine.UI;
+using System.Collections.Generic;
+using System.ComponentModel;
 
 public class GameManager : MonoBehaviour
 {
@@ -13,6 +15,8 @@ public class GameManager : MonoBehaviour
     public bool hasDough1 = false; //재료1 다 모았는지 여부
     public bool hasDough2 = false; //재료2 다 모았는지 여부
     public bool hasDough3 = false; //재료3 다 모았는지 여부
+    public bool hasDough4 = false;
+    public bool hasDough5 = false;
 
     [Header("진행도 관련")]
     [SerializeField] Slider progressSlider; //진행도 슬라이더
@@ -35,6 +39,11 @@ public class GameManager : MonoBehaviour
     [SerializeField] float fireDamage = 0f; //불 데미지
     [SerializeField] float fireDamageDuration = 5f; //불 데미지 지속시간
 
+    [Header("Baking Bread")]
+    [SerializeField]
+    private List<ItemData> breadList;
+    private ItemData curBread;
+
 
     private void Awake()
     {
@@ -45,6 +54,12 @@ public class GameManager : MonoBehaviour
         currentHp = 100;
         hpBar.fillAmount = 1;
     }
+
+    //private void OnEnable()
+    //{
+    //    curBread = breadList[Random.Range(0, 3)];
+    //    Debug.Log($"Misson: {curBread}");
+    //}
 
     private void Update()
     {
@@ -232,5 +247,10 @@ public class GameManager : MonoBehaviour
 
         isGameOver = true;
         gameEndingScript.EndGame();
+    }
+
+    public ItemData GetCurBread()
+    {
+        return curBread;
     }
 }
