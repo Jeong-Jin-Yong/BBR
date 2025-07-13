@@ -22,5 +22,10 @@ public class DustObj : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.gameObject.CompareTag("Player")) Destroy(gameObject);
+        else if (collision.gameObject.CompareTag("BreadSkill"))
+        {
+            Destroy(gameObject);
+            Destroy(collision.gameObject);
+        }
     }
 }

@@ -1,7 +1,6 @@
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
-using System.Collections.Generic;
-using System.ComponentModel;
 
 public class GameManager : MonoBehaviour
 {
@@ -9,6 +8,7 @@ public class GameManager : MonoBehaviour
 
     [Header("반죽 단계 관련")]
     [SerializeField] GameObject doughGroup; //도우 게임오브젝트 그룹
+    [SerializeField] GameObject memoGroup;
     [SerializeField] Image doughTimerBar; //도우 타이머 바
     [SerializeField] float doughTime; //도우 타이머 시간
     [SerializeField] float doughTimer; //도우 타이머 시간
@@ -37,12 +37,14 @@ public class GameManager : MonoBehaviour
     [SerializeField] float currentHp; //현재 체력
     [SerializeField] bool onFire = false; //불 활성화 여부
     [SerializeField] float fireDamage = 0f; //불 데미지
-    [SerializeField] float fireDamageDuration = 5f; //불 데미지 지속시간
+    [SerializeField] public float fireDamageDuration = 5f; //불 데미지 지속시간
 
-    [Header("Baking Bread")]
-    [SerializeField]
-    private List<ItemData> breadList;
-    private ItemData curBread;
+    public AudioSource bgm;
+    public AudioClip bgm1;
+    public AudioClip bgm2;
+    public AudioClip bgm3;
+
+    public GameObject setting;
 
     [Header("스테이지 플랫폼 설정")]
     [SerializeField] GameObject[] stage1Prefabs;
@@ -50,18 +52,25 @@ public class GameManager : MonoBehaviour
     [SerializeField] GameObject[] stage3Prefabs;
 
     [Header("스테이지 패턴 설정")]
-    [SerializeField] int[] stage1Patterns = { 0, 1, 2, 1 };
-    [SerializeField] int[] stage2Patterns = { 0, 2, 1, 2 };
-    [SerializeField] int[] stage3Patterns = { 0, 1, 2, 1 };
+    [SerializeField] int[] stage1Patterns = { 0, 0, 0 };
+    [SerializeField] int[] stage2Patterns = { 0, 0, 0 };
+    [SerializeField] int[] stage3Patterns = { 0, 0, 0 };
 
     private void Awake()
     {
         gameEndingScript = GetComponent<GameEnding>();
 
+        fireDamageDuration = 0f;
         doughTimer = doughTime;
         maxHp = 100;
         currentHp = 100;
         hpBar.fillAmount = 1;
+
+        //// 최초 패턴 랜덤 설정
+        //RandomizeStagePatterns();
+
+        //// 이후 20초마다 패턴 변경
+        //InvokeRepeating(nameof(RandomizeStagePatterns), 20f, 20f);
     }
 
     //private void OnEnable()
@@ -72,6 +81,11 @@ public class GameManager : MonoBehaviour
 
     private void Update()
     {
+        if(Input.GetKeyDown(KeyCode.Escape))
+        {
+            setting.SetActive(true);
+        }
+
         if (isGameOver)
             return;
 
@@ -111,6 +125,25 @@ public class GameManager : MonoBehaviour
         }
     }
 
+    //private void RandomizeStagePatterns()
+    //{
+    //    if (stageID == 1) stage1Patterns = GenerateRandomPattern(5, 0, 6);
+    //    else if (stageID == 2) stage2Patterns = GenerateRandomPattern(5, 0, 6);
+    //    else if (stageID == 3) stage3Patterns = GenerateRandomPattern(5, 0, 6);
+
+    //    Debug.Log("Stage 패턴이 변경되었습니다.");
+    //}
+
+    //private int[] GenerateRandomPattern(int length, int minValue, int maxExclusive)
+    //{
+    //    int[] pattern = new int[length];
+    //    for (int i = 0; i < length; i++)
+    //    {
+    //        pattern[i] = Random.Range(minValue, maxExclusive); // min 이상 max 미만
+    //    }
+    //    return pattern;
+    //}
+
     //반죽 업데이트
     private void DoughUpdate()
     {
@@ -119,18 +152,8 @@ public class GameManager : MonoBehaviour
 
         if (doughTimerBar.fillAmount <= 0.001f)
         {
-            if (!hasDough1 || !hasDough2 || !hasDough3)
-            {
-                isGameOver = true;
-                gameEndingScript.EndGame();
-            }
-            else
-            {
-                stageID = 2;
-                doughGroup.SetActive(false);
-                hpGroup.SetActive(true);
-                //스테이지 2로 전환
-            }
+            isGameOver = true;
+            gameEndingScript.EndGame();
         }
     }
 
@@ -150,6 +173,7 @@ public class GameManager : MonoBehaviour
                 isStage1 = true;
                 previousStageID = stageID;
                 ChangeStage(1);
+                bgm.clip = bgm1;
             }
         }
         else if (progress <= 0.66f)
@@ -157,11 +181,17 @@ public class GameManager : MonoBehaviour
             stageID = 2;
             if (previousStageID != stageID)
             {
+                memoGroup.SetActive(false);
+                doughGroup.SetActive(false);
+                hpGroup.SetActive(true);
+
                 isStage2 = true;
                 animator.SetInteger("StageID", 2);
                 CharacterInfo.Instance.ActivePlayer();
                 previousStageID = stageID;
                 ChangeStage(2);
+                bgm.clip = bgm2;
+
             }
         }
         else if (progress < 0.99f)
@@ -174,9 +204,10 @@ public class GameManager : MonoBehaviour
                 CharacterInfo.Instance.ActivePlayer();
                 previousStageID = stageID;
                 ChangeStage(3);
+                bgm.clip = bgm3;
             }
         }
-        else if (progress <= 0.99f)
+        else if (progress >= 0.99f)
         {
             stageID = 4;
             if (previousStageID != stageID)
@@ -186,6 +217,7 @@ public class GameManager : MonoBehaviour
             }
         }
     }
+
 
     private void ChangeStage(int newStageID)
     {
@@ -303,4 +335,13 @@ public class GameManager : MonoBehaviour
         gameEndingScript.EndGame();
     }
 
+    public void GameRestart()
+    {
+        SceneManager.LoadScene("Order");
+    }
+
+    public void Roby()
+    {
+        SceneManager.LoadScene("TitleScene");
+    }
 }

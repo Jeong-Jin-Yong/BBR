@@ -8,6 +8,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 702481822955359123, guid: ec2b0a30a61d25b4095eaaacf4ec6cb1, type: 3}
+      propertyPath: m_Size.y
+      value: 3.212632
+      objectReference: {fileID: 0}
+    - target: {fileID: 702481822955359123, guid: ec2b0a30a61d25b4095eaaacf4ec6cb1, type: 3}
+      propertyPath: m_Offset.y
+      value: -0.12852204
+      objectReference: {fileID: 0}
     - target: {fileID: 3119072578139875178, guid: ec2b0a30a61d25b4095eaaacf4ec6cb1, type: 3}
       propertyPath: m_LocalPosition.x
       value: 3
@@ -81,6 +89,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 5765173298381632623}
     m_Modifications:
+    - target: {fileID: -8631188386410060621, guid: d2a2f72ad187e224c9051662643d4c8b, type: 3}
+      propertyPath: m_Size.y
+      value: 1.5529714
+      objectReference: {fileID: 0}
+    - target: {fileID: -8631188386410060621, guid: d2a2f72ad187e224c9051662643d4c8b, type: 3}
+      propertyPath: m_Offset.y
+      value: 0.8544297
+      objectReference: {fileID: 0}
     - target: {fileID: 2263533940348625700, guid: d2a2f72ad187e224c9051662643d4c8b, type: 3}
       propertyPath: m_Name
       value: Platform1_Obstacle (1)
@@ -161,7 +177,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6611237120825189774, guid: 398446139680f7148959d81e50cdde29, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 15.8177
+      value: 15
       objectReference: {fileID: 0}
     - target: {fileID: 6611237120825189774, guid: 398446139680f7148959d81e50cdde29, type: 3}
       propertyPath: m_LocalPosition.z

@@ -184,6 +184,18 @@ PrefabInstance:
       propertyPath: m_Name
       value: Top1_Obstacle 2
       objectReference: {fileID: 0}
+    - target: {fileID: 3299273023687124356, guid: 6243f172d024d6947ab6c943e192592f, type: 3}
+      propertyPath: m_Size.y
+      value: 3.8499873
+      objectReference: {fileID: 0}
+    - target: {fileID: 3299273023687124356, guid: 6243f172d024d6947ab6c943e192592f, type: 3}
+      propertyPath: m_Offset.y
+      value: -1.9249936
+      objectReference: {fileID: 0}
+    - target: {fileID: 3299273023687124356, guid: 6243f172d024d6947ab6c943e192592f, type: 3}
+      propertyPath: m_IsTrigger
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6611237120825189774, guid: 6243f172d024d6947ab6c943e192592f, type: 3}
       propertyPath: m_LocalScale.x
       value: 2
@@ -194,11 +206,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6611237120825189774, guid: 6243f172d024d6947ab6c943e192592f, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0.14
+      value: 0.07
       objectReference: {fileID: 0}
     - target: {fileID: 6611237120825189774, guid: 6243f172d024d6947ab6c943e192592f, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 15.5
+      value: 14.81
       objectReference: {fileID: 0}
     - target: {fileID: 6611237120825189774, guid: 6243f172d024d6947ab6c943e192592f, type: 3}
       propertyPath: m_LocalPosition.z

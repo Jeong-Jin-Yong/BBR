@@ -46,7 +46,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: eefb5eb7beb70ba4c8095264770e53fc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveSpeed: 4
 --- !u!1 &2143959621409929482
 GameObject:
   m_ObjectHideFlags: 0
@@ -165,6 +164,14 @@ PrefabInstance:
     - target: {fileID: 3249431903209203212, guid: 2b7054c8f3a0b584d9e2f5c242514a54, type: 3}
       propertyPath: m_Name
       value: Platform_Start
+      objectReference: {fileID: 0}
+    - target: {fileID: 8594587339587814824, guid: 2b7054c8f3a0b584d9e2f5c242514a54, type: 3}
+      propertyPath: m_Size.y
+      value: 3.2194054
+      objectReference: {fileID: 0}
+    - target: {fileID: 8594587339587814824, guid: 2b7054c8f3a0b584d9e2f5c242514a54, type: 3}
+      propertyPath: m_Offset.y
+      value: -0.15175617
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

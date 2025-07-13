@@ -9,8 +9,17 @@ EditorBuildSettings:
     path: Assets/_Clean/Scene/TitleScene.unity
     guid: b57c20bf2e97b6d47b3ade94e9805b2a
   - enabled: 1
+    path: Assets/Scenes/Order.unity
+    guid: 838ef6989d085be468376a8650695379
+  - enabled: 1
     path: Assets/_Clean/Scene/GameScene.unity
-    guid: 012da29005e129b4091b872202ca606d
+    guid: b738453150768e94e8eda3a31cd37511
+  - enabled: 1
+    path: Assets/Scenes/Fail.unity
+    guid: 9517d28c6efc8f14dbeb8a68fd7c5c39
+  - enabled: 1
+    path: Assets/Scenes/SuccessEnd.unity
+    guid: 0e752495252941846a0675d8fbe6a404
   m_configObjects:
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 052faaac586de48259a63d0c4782560b, type: 3}
   m_UseUCBPForAssetBundles: 0

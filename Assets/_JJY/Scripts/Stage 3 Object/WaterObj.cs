@@ -21,5 +21,10 @@ public class WaterObj : MonoBehaviour
             lastPos = transform.position;
             rb.linearVelocity = new Vector2(0, 0);
         }
+        else if (collision.gameObject.CompareTag("BreadSkill"))
+        {
+            Destroy(gameObject);
+            Destroy(collision.gameObject);
+        }
     }
 }

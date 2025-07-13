@@ -181,11 +181,18 @@ MonoBehaviour:
   doughMaxSkillCount: 3
   jumpPower: 650
   jumpMaxCount: 2
+  jumpSound: {fileID: 0}
   skillObject:
   - {fileID: 0}
   doughSkillDistance: 250
   breadSkillDistance: 100
+  audioSource: {fileID: 0}
+  stage13Skill: {fileID: 0}
+  stage2Skill: {fileID: 0}
   animator: {fileID: 7224859697707693673}
+  fireGroup: {fileID: 0}
+  bubbleGroup: {fileID: 0}
+  bubbleAnim: []
 --- !u!95 &7224859697707693673
 Animator:
   serializedVersion: 7

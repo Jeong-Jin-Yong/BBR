@@ -9,6 +9,8 @@ TagManager:
   - Fire
   - Magnet
   - Ingredient
+  - BreadSkill
+  - Monster
   layers:
   - Default
   - TransparentFX

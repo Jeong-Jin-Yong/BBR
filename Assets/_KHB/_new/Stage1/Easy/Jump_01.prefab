@@ -162,6 +162,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: Platform_Long
       objectReference: {fileID: 0}
+    - target: {fileID: 7055726498834631112, guid: 509894fcd0ee343409721a3ef85e58cf, type: 3}
+      propertyPath: m_Size.y
+      value: 3.1956313
+      objectReference: {fileID: 0}
+    - target: {fileID: 7055726498834631112, guid: 509894fcd0ee343409721a3ef85e58cf, type: 3}
+      propertyPath: m_Offset.y
+      value: -0.13702238
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

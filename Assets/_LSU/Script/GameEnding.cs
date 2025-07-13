@@ -6,16 +6,7 @@ public class GameEnding : MonoBehaviour
 {
     GameManager gameManager;
 
-    [Header("스테이지 종료 화면")]
-    [SerializeField] GameObject stageResultGroup; //스테이지 게임오브젝트 그룹
-    [SerializeField] Image stageImage; //이미지
-    [SerializeField] Sprite stage1Ending; //스테이지1 엔딩
-    [SerializeField] Sprite stage2Ending; //스테이지2 엔딩
-    [SerializeField] Sprite stage3Ending; //스테이지3 엔딩
-    [SerializeField] Sprite clearEnding; //클리어 엔딩
-
-    [SerializeField] Text stageText; //스테이지 종료 텍스트
-    [SerializeField] string[] texts; //스테이지 종료 텍스트 배열
+    [SerializeField] int currentRoundIndex;
 
 
     private void Awake()
@@ -29,41 +20,36 @@ public class GameEnding : MonoBehaviour
         switch (gameManager.stageID)
         {
             case 1:
-                stageImage.sprite = stage1Ending;
-                stageText.text = texts[0];
+                //stageImage.sprite = stage1Ending;
+                //stageText.text = texts[0];
+                currentRoundIndex = 0;
+
+                GameState.failedRoundIndex = currentRoundIndex;
+                SceneManager.LoadScene("Fail");
                 Debug.Log("스테이지1 게임오버");
                 break;
 
             case 2:
-                stageImage.sprite = stage2Ending;
-                stageText.text = texts[1];
+
+                currentRoundIndex = 1;
+
+                GameState.failedRoundIndex = currentRoundIndex;
+                SceneManager.LoadScene("Fail");
                 Debug.Log("스테이지2 게임오버");
                 break;
 
             case 3:
-                stageImage.sprite = stage3Ending;
-                stageText.text = texts[2];
+                currentRoundIndex = 2;
+
+                GameState.failedRoundIndex = currentRoundIndex;
+                SceneManager.LoadScene("Fail");
                 Debug.Log("스테이지3 게임오버");
                 break;
 
             case 4:
-                stageImage.sprite = clearEnding;
-                stageText.text = texts[3];
+                SceneManager.LoadScene("SuccessEnd");
                 Debug.Log("게임 클리어");
                 break;
         }
-
-        stageResultGroup.SetActive(true);
-    }
-
-    public void Retry()
-    {
-        SceneManager.LoadScene("GameScene");
-    }
-
-    public void Exit()
-    {
-        SceneManager.LoadScene("TitleScene");
-        //Application.Quit();
     }
 }

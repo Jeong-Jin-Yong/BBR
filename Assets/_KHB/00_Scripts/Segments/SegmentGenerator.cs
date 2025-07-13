@@ -14,7 +14,7 @@ public class SegmentGenerator : MonoBehaviour
 {
     [Header("Generation Settings")]
     public float segmentWidth = 10f;
-    public int maxActiveSegments = 3;
+    public int maxActiveSegments = 2;
     public float patternSpawnInterval = 2f; // 패턴 생성 간격 (초)
 
     public float spawnAheadDistance = 30f;
@@ -22,10 +22,10 @@ public class SegmentGenerator : MonoBehaviour
     [Header("Platform Pattern")]
     public int startPlatformIndex = 0; // 시작 플랫폼 프리팹 인덱스
     public int jumpPlatformIndex = 1; // 점프 플랫폼 프리팹 인덱스
-    public int slidingPlatformIndex = 2; // 슬라이딩 플랫폼 프리팹 인덱스
-    public int doubleJumpPlatformIndex = 3; // 더블점프 플랫폼 프리팹 인덱스
-    public int doubleJumpPlatform2Index = 4; // 더블점프 플랫폼2 프리팹 인덱스
-    public int jumpAndSlidingPlatformIndex = 5;
+    public int slidingPlatformIndex = 2; // 더블점프 플랫폼 프리팹 인덱스
+    public int doublejumpPlatformIndex = 3; // 더블점프 플랫폼2 프리팹 인덱스
+    public int slidingPlatform2Index= 4;
+    public int slidingPlatform3Index = 5;
 
     private Queue<GameObject> activeSegments;
     private Vector3 nextSpawnPosition;
@@ -40,7 +40,7 @@ public class SegmentGenerator : MonoBehaviour
     [SerializeField] private float segmentSpawnDistance = 20f;
 
     // 점프-슬라이딩-더블점프-점프 패턴
-    private int[] platformPattern = { 0, 0, 0, 0 }; // 점프, 슬라이딩, 더블점프, 점프
+    private int[] platformPattern = {  }; // 점프, 슬라이딩, 더블점프, 점프
 
     public static SegmentGenerator Instance { get; private set; }
 
@@ -135,8 +135,8 @@ public class SegmentGenerator : MonoBehaviour
             GeneratePatternSegment();
         }
 
-        int[] nextPattern = { 1, 2, 3, 1, 1};
-        SetPlatformPattern(nextPattern);
+        //int[] nextPattern = { 1, 2, 3, 1, 1};
+        //SetPlatformPattern(nextPattern);
 
         isGeneratingPattern = false;
     }
@@ -186,22 +186,22 @@ public class SegmentGenerator : MonoBehaviour
     {
         switch (patternIndex)
         {
-            case 0: // 스타트 플랫폼
+            case 0:
                 return startPlatformIndex;
-            case 1: // 점프
+            case 1:
                 return jumpPlatformIndex;
-            case 2: // 슬라이딩
+            case 2: 
                 return slidingPlatformIndex;
-            case 3: // 더블점프
-                return doubleJumpPlatformIndex;
-            case 4: // 더블점프2
-                return doubleJumpPlatform2Index;
+            case 3:
+                return doublejumpPlatformIndex;
+            case 4:
+                return slidingPlatform2Index;
             case 5:
-                return jumpAndSlidingPlatformIndex;
+                return slidingPlatform3Index;
             default:
                 return jumpPlatformIndex; // 기본값
         }
-    }
+}
 
     public void ResetGenerator()
     {
